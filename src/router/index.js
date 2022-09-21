@@ -12,7 +12,7 @@ const routes = [
         name: 'dashboard',
         component: () => import('@/pages/Dashboard.vue'),
         meta:{
-            requiresAuth: true
+            requiresAuth: true,
         }
 
     },

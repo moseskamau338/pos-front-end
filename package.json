@@ -10,7 +10,13 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.7",
+    "@vueuse/core": "^9.2.0",
     "nprogress": "^0.2.0",
+    "pinia": "^2.0.22",
+    "pinia-plugin-persist": "^1.0.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "vue": "^3.2.37",
     "vue-router": "^4.1.5"
   },

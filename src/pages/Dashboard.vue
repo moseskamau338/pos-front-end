@@ -1,10 +1,12 @@
 <template>
-<h1>Page: Dashbaord</h1>
+  <Empty title="Dashboard is clean" description="No records found for reporting..." />
 </template>
 
 <script>
+import Empty from "@/components/app/Empty.vue";
 export default {
-  name: "Dashboard"
+  name: "Dashboard",
+  components: {Empty}
 }
 </script>
 

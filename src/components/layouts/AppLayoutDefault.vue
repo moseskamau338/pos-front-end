@@ -1,24 +1,16 @@
 <template>
-  <section>
+  <section class="max-h-screen">
     <!--sidebar main-->
-    <div class="absolute bg-white border min-h-screen flex">
-      <div class="w-[80px] max-w-[80px] inset-0 flex border-r flex-col flex-wrap overflow-x-hidden">
+    <div class="absolute bg-white dark:bg-brand-dark-box dark:border-gray-700 border min-h-screen flex">
+      <div class="w-[80px] max-w-[80px] inset-0 flex border-r dark:border-r-0 flex-col flex-wrap overflow-x-hidden">
           <div class="h-[60px] flex justify-center items-center">
             -----
           </div>
 
           <div class="items-center text-center pt-5">
             <nav class="flex flex-col space-y-6">
-              <button @click="activeItem = item.name" class="flex items-center justify-center" v-for="item in [
-                  {name:'Dashboard', icon: 'fa-grid-2'},
-                  {name:'Inventory', icon: 'fa-inventory'},
-                  {name:'POS', icon: 'fa-cash-register'},
-                  {name:'Reporting', icon: 'fa-pie-chart'},
-                  {name:'Settings', icon: 'fa-user-gear'},
-              ]">
-                <span :class="[
-                    activeItem === item.name ? 'bg-sky-100 text-sky-600' : ''
-                ]"
+              <button @click="activeItem = item.name" class="flex items-center justify-center" v-for="item in mainButtons">
+                <span :class="[ activeItem === item.name ? 'bg-sky-100 text-sky-600' : '' ]"
                       class="hover:bg-sky-100 rounded-full h-10 w-10 flex items-center justify-center transition-all text-slate-400 hover:text-sky-600">
                   <i :class="item.icon" class="fa-duotone text-lg"></i>
                 </span>
@@ -33,7 +25,6 @@
           </div>
 
         </div>
-
       <TransitionRoot as="div" :show="sidebarExpanded" class="w-[150px] max-w-[150px] py-5 px-2"
         enter="translate-x-0 duration-500 ease-in-out"
         enter-from="-translate-x-100"
@@ -57,10 +48,8 @@
     </div>
 
     <!--topbar-->
-      <div id="topbar" :class="[
-          sidebarExpanded? 'ml-[230px]' : 'ml-20'
-      ]" class="top-0 h-[60px] px-5 border-b flex items-center justify-between">
-        <div>
+      <div id="topbar" :class="[ sidebarExpanded? 'ml-[230px]' : 'ml-20' ]" class="top-0 h-[60px] px-5 border-b flex items-center justify-between dark:bg-brand-dark-box dark:border-gray-700">
+        <div class="flex items-center">
           <button @click="sidebarExpanded = !sidebarExpanded"
                   :class="[
                       sidebarExpanded ? 'bg-sky-100 shadow' : ''
@@ -74,16 +63,14 @@
           </button>
         </div>
         <div class="flex justify-evenly items-center space-x-8">
-          <div class="mt-1 relative rounded-full w-[250px] bg-slate-200">
+          <div class="mt-1 relative rounded-full w-[250px] bg-slate-200 dark:bg-gray-700">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <!-- Heroicon name: solid/mail -->
-              <i class="fa-duotone fa-search"></i>
+              <i class="fa-duotone fa-search dark:text-slate-300"></i>
             </div>
-            <input type="text" class="bg-transparent focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-full py-2" placeholder="Search here ...">
+            <input type="text" class="bg-transparent dark:text-slate-500 focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-full py-2" placeholder="Search here ...">
           </div>
-          <span>
-            <i class="fa-solid fa-sun-bright text-xl text-amber-400"></i>
-          </span>
+          <Toggler />
           <span>
             <i class="fa-solid fa-bell text-xl relative">
             <span class="absolute top-0 -right-1 bg-red-600 h-3 w-3 flex items-center justify-center rounded-full bg-green-300 animate-pulse"><i class="fa-solid fa-circle text-[8px] text-green-600"></i></span>
@@ -91,30 +78,41 @@
           </span>
         </div>
         </div>
-
+    <BreadCrumb :class="[ sidebarExpanded? 'ml-[230px]' : 'ml-20' ]" class="pl-5" />
     <main
-        :class="[
-          sidebarExpanded? 'ml-[230px]' : 'ml-20'
-      ]"
-        class="px-5 py-10">
+        :class="[ sidebarExpanded? 'ml-[230px]' : 'ml-[80px]' ]"
+        class="px-5 py-5 max-h-screen overflow-y-auto dark:bg-brand-dark dark:border-gray-600 h-screen">
       <slot></slot>
     </main>
   </section>
-
-
 </template>
 
 <script>
 import {TransitionRoot, TransitionChild} from '@headlessui/vue'
 import {ref} from "vue";
 import Sidebar from "@/components/app/Sidebar.vue";
+import BreadCrumb from "@/components/app/BreadCrumb.vue";
+import Toggler from "@/components/app/Toggler.vue";
 export default {
-  components: { Sidebar, TransitionRoot, TransitionChild },
+  components: {Toggler, BreadCrumb, Sidebar, TransitionRoot, TransitionChild },
   setup(){
     const sidebarExpanded = ref(false)
     const activeItem = ref('')
+    const mainButtons = [
+        {name:'Dashboard', icon: 'fa-grid-2'},
+        {name:'Inventory', icon: 'fa-inventory'},
+        {name:'POS', icon: 'fa-cash-register'},
+        {name:'Reporting', icon: 'fa-pie-chart'},
+        {name:'Settings', icon: 'fa-user-gear'},
+    ]
 
-    return {sidebarExpanded, activeItem}
+    const subNavigationList = ref({
+      inventory: [
+
+      ]
+    })
+
+    return {sidebarExpanded, activeItem, mainButtons}
   }
 }
 </script>

@@ -16,25 +16,102 @@ const routes = [
         }
 
     },
+    /*
+    * #########################################
+    *         Inventory Routes
+    * #########################################
+    * */
     {
-        path: '/overview',
-        name: 'overview',
-        component: () => import('@/pages/Landing.vue'),
+        path: '/inventory/products',
+        name: 'inventory-products',
+        component: () => import('@/pages/inventory/Products.vue'),
         meta:{
-            requiresGuest: true,
-            layout: 'FlatLayout'
+            requiresAuth: true,
+            breadcrumb: (route) => ([
+                {
+                    text: 'Inventory',
+                    active: false,
+                },
+                {
+                    text: 'Products',
+                    active: true,
+                },
+            ]),
         }
-
     },
     {
-        path: '/test',
-        name: 'test',
-        component: () => import('@/pages/Test.vue'),
+        path: '/inventory/ingredients',
+        name: 'inventory-ingredients',
+        component: () => import('@/pages/inventory/Inventory.vue'),
         meta:{
-            requiresAuth: true
+            requiresAuth: true,
+            breadcrumb: (route) => ([
+                {
+                    text: 'Inventory',
+                    active: false,
+                },
+                {
+                    text: 'Ingredients',
+                    active: true,
+                },
+            ]),
         }
-
     },
+    {
+        path: '/inventory/purchases',
+        name: 'inventory-purchases',
+        component: () => import('@/pages/inventory/purchases.vue'),
+        meta:{
+            requiresAuth: true,
+            breadcrumb: (route) => ([
+                {
+                    text: 'Inventory',
+                    active: false,
+                },
+                {
+                    text: 'Purchases',
+                    active: true,
+                },
+            ]),
+        }
+    },
+    {
+        path: '/inventory/suppliers',
+        name: 'inventory-suppliers',
+        component: () => import('@/pages/inventory/Suppliers.vue'),
+        meta:{
+            requiresAuth: true,
+            breadcrumb: (route) => ([
+                {
+                    text: 'Inventory',
+                    active: false,
+                },
+                {
+                    text: 'Suppliers',
+                    active: true,
+                },
+            ]),
+        }
+    },
+    {
+        path: '/inventory/wastes',
+        name: 'inventory-wastes',
+        component: () => import('@/pages/inventory/Wastes.vue'),
+        meta:{
+            requiresAuth: true,
+            breadcrumb: (route) => ([
+                {
+                    text: 'Inventory',
+                    active: false,
+                },
+                {
+                    text: 'Wastes',
+                    active: true,
+                },
+            ]),
+        }
+    },
+
 
 
     // default pages

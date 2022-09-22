@@ -9,7 +9,7 @@ export const useUiStore = defineStore('uiStore', {
         return {
             theme: false,
             cookie_consent: false,
-            mainSidebarOpen: true,
+            sidebarExpanded: true,
             minimize_recon_stats:true,
         }
     },
@@ -28,7 +28,7 @@ export const useUiStore = defineStore('uiStore', {
             }
         },
         toggleCollapse(){
-            this.mainSidebarOpen = !this.mainSidebarOpen
+            this.sidebarExpanded = !this.sidebarExpanded
         }
     }
 })

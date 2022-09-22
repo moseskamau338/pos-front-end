@@ -1,25 +1,27 @@
 export default [
-  {
-    header: 'Marketplace',
-  },
    {
-    title: 'Invoice Marketplace',
-    route: 'marketplace',
+    title: 'Products',
+    route: 'inventory-products',
     icon: 'fa-solid fa-store',
   },
     {
-     title: 'Invoicing',
-     route: 'invoicing',
+     title: 'Ingredients',
+     route: 'inventory-ingredients',
      icon: 'fa-solid fa-file-invoice',
     },
   {
-    title: 'Expected Payments',
-    route: 'expected_payments',
+    title: 'Wastes',
+    route: 'inventory-wastes',
     icon: 'fa-solid fa-money-bill-wave',
   },
   {
-    title: 'Bank/ERP Settings',
-    route: 'erp-settings',
+    title: 'Suppliers',
+    route: 'inventory-suppliers',
+    icon: 'fa-solid fa-square-sliders',
+  },
+    {
+    title: 'Purchases',
+    route: 'inventory-purchases',
     icon: 'fa-solid fa-square-sliders',
   },
 ]

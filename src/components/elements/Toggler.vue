@@ -1,7 +1,7 @@
 <template>
-     <button class="text-xl" @click="uiStore.theme = !uiStore.theme">
+     <button @click="uiStore.theme = !uiStore.theme">
         <i class="fa-solid fa-moon dark:text-brand-dark transition-all" v-if="!uiStore.theme"></i>
-       <i class="fa-solid fa-sun-bright text-amber-400" v-else></i>
+        <i class="fa-solid fa-sun transition-all" v-else ></i>
      </button>
 </template>
 

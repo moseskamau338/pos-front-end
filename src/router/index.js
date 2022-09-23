@@ -42,7 +42,7 @@ const routes = [
     {
         path: '/inventory/ingredients',
         name: 'inventory-ingredients',
-        component: () => import('@/pages/inventory/Inventory.vue'),
+        component: () => import('@/pages/inventory/Ingredients.vue'),
         meta:{
             requiresAuth: true,
             breadcrumb: (route) => ([

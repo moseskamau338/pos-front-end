@@ -7,8 +7,11 @@
           <div class="items-center text-center pt-5">
             <nav class="flex flex-col space-y-6">
               <button @click="activeItem = item.name" class="flex items-center justify-center" v-for="item in mainButtons">
-                <span :class="[ activeItem === item.name ? 'bg-sky-100 text-sky-600' : '' ]"
-                      class="hover:bg-sky-100 rounded-full h-10 w-10 flex items-center justify-center transition-all text-slate-400 hover:text-sky-600">
+                <span
+                    :class="[(activeItem === item.name) ? 'bg-slate-100' : '',
+                    (activeByRoute === item.name)? 'bg-highlight-light text-highlight' : ''
+                    ]"
+                      class="hover:bg-highlight-light rounded-full h-10 w-10 flex items-center justify-center transition-all text-slate-400 hover:text-highlight">
                   <i :class="item.icon" class="fa-duotone text-lg"></i>
                 </span>
               </button>
@@ -16,7 +19,7 @@
             </nav>
           </div>
           <div class="absolute flex items-center justify-center bottom-0 py-1 w-[80px]">
-            <span class="hover:cursor-pointer bg-sky-100 rounded-full h-12 w-12 border-2 border-sky-400 flex items-center justify-center">
+            <span class="hover:cursor-pointer bg-highlight-light rounded-full h-12 w-12 border-2 border-sky-400 flex items-center justify-center">
               <i class="fa-duotone fa-user text-sky-800 text-lg"></i>
             </span>
           </div>
@@ -56,7 +59,7 @@
 </template>
 
 <script>
-import { ref, watch } from "vue";
+import {computed, ref, watch} from "vue";
 import {useRoute} from "vue-router";
 import {TransitionRoot, TransitionChild} from '@headlessui/vue'
 import {useUiStore} from "@/db/ui";
@@ -80,20 +83,23 @@ name: "Sidebar",
         {name:'Reporting', icon: 'fa-pie-chart'},
         {name:'Settings', icon: 'fa-user-gear'},
     ]
-    const activeItem = ref(null)
-
-    /*Make sure all mainButton names are aligned with navigation*/
-    mainButtons.forEach((menuItem) => {
-      let currentName = route.fullPath.split('/')[1]
-      if (menuItem.name.toLowerCase() === currentName.toLowerCase()){
-        console.log('Setting value')
-        activeItem.value = menuItem.name
+    const activeItem = ref(mainButtons[0].name)
+    const activeByRoute = computed(() => {
+      let active = ''
+      /*Make sure all mainButton names are aligned with navigation*/
+      mainButtons.forEach((menuItem) => {
+        let currentName = route.fullPath.split('/')[1]
+        if (menuItem.name.toLowerCase() === currentName.toLowerCase()){
+          console.log('Setting value')
+          active = menuItem.name
+        }
+      })
+      if (!active){
+         console.log('Setting first value')
+          active = mainButtons[0].name
       }
+      return active
     })
-    if (!activeItem.value){
-       console.log('Setting first value')
-        activeItem.value = mainButtons[0].name
-    }
 
 
     watch(activeItem,(newVal, oldVal) => {
@@ -107,7 +113,7 @@ name: "Sidebar",
           })
     })
 
-    return {uiStore, route, activeItem, mainButtons, navList}
+    return {uiStore, activeByRoute, route, activeItem, mainButtons, navList}
   }
 }
 </script>

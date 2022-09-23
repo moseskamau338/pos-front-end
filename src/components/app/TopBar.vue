@@ -3,14 +3,14 @@
         <div class="flex items-center">
           <button @click="uiStore.toggleCollapse()"
                   :class="[
-                      uiStore.sidebarExpanded ? 'bg-sky-100 shadow' : ''
+                      uiStore.sidebarExpanded ? 'bg-highlight-light shadow' : ''
                   ]"
-                  class="hover:bg-sky-100 h-6 w-6 flex items-center justify-center rounded-full transition-all duration-300 group">
+                  class="hover:bg-highlight-light h-6 w-6 flex items-center justify-center rounded-full transition-all duration-300 group">
             <i
                 :class="[
-                    uiStore.sidebarExpanded ? 'fa-chevron-left text-sky-600' : 'fa-align-left text-slate-400'
+                    uiStore.sidebarExpanded ? 'fa-chevron-left text-highlight' : 'fa-align-left text-slate-400'
                 ]"
-                class="fa-solid group-hover:fa-chevron-left group-hover:text-sky-600 text-sm transition-all duration-300"></i>
+                class="fa-solid group-hover:fa-chevron-left group-hover:text-highlight text-sm transition-all duration-300"></i>
           </button>
         </div>
         <div class="flex justify-evenly items-center space-x-8">

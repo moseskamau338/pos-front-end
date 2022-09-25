@@ -17,18 +17,18 @@
   </section>
 
 
+<CreateIngredient :show="showCreate" @close="onClose" />
 
-  <Modal :open="showCreate" />
 </template>
 
 <script>
 import TableLite from "@/components/Table/TableLite.vue";
 import {ref} from "vue";
 import CButton from "@/components/elements/CButton.vue";
-import Modal from "@/components/elements/Modal.vue";
+import CreateIngredient from "@/pages/inventory/CreateIngredient.vue";
 export default {
   name: "Ingredients",
-  components: {Modal, CButton, TableLite},
+  components: {CreateIngredient, CButton, TableLite},
    setup(){
     const showCreate = ref(false)
     const fields =  ref([
@@ -40,7 +40,11 @@ export default {
       {key: 'stock_alert', label: 'Stock Alert Limit'},
     ])
 
-     return {fields, showCreate}
+     const onClose = () => {
+       showCreate.value = false
+     }
+
+     return {fields, showCreate, onClose}
    }
 }
 </script>

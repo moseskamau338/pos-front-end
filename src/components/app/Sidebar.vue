@@ -104,7 +104,8 @@ name: "Sidebar",
 
     watch(activeItem,(newVal, oldVal) => {
       if (!newVal) return []
-      import(`/src/navigation/${newVal.toLowerCase()}`)
+
+      import(/* @vite-ignore */`/src/navigation/${newVal.toLowerCase()}`)
           .then((data) => {
             navList.value = data.default
           })

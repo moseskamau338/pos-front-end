@@ -10,7 +10,7 @@ import {ThemeGenerator} from "@/library/ThemeGenerator";
 export default {
   name: "CButton",
   props:{
-    variant: { type: String, required:true},
+    variant: { type: String, default:'info'},
   },
    setup(props){
       const themeGenerator = computed(() => {

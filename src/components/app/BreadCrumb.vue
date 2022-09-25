@@ -31,10 +31,6 @@
               </ol>
           </div>
         </nav>
-
-        <h1 class="text-xl my-4 font-semibold flex text-brand-gray">
-            {{route.meta.title || ''}}
-        </h1>
         </div>
   </Transition>
 </template>

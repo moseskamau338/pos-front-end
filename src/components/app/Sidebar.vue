@@ -8,10 +8,10 @@
             <nav class="flex flex-col space-y-6">
               <button @click="activeItem = item.name" class="flex items-center justify-center" v-for="item in mainButtons">
                 <span
-                    :class="[(activeItem === item.name) ? 'bg-slate-100' : '',
-                    (activeByRoute === item.name)? 'bg-highlight-light text-highlight' : ''
+                    :class="[(activeItem === item.name) ? 'bg-slate-100 dark:bg-slate-700 dark:text-slate-300' : '',
+                    (activeByRoute === item.name)? 'bg-highlight-light text-highlight dark:text-sky-300 dark:bg-slate-500' : ''
                     ]"
-                      class="hover:bg-highlight-light rounded-full h-10 w-10 flex items-center justify-center transition-all text-slate-400 hover:text-highlight">
+                      class="hover:bg-highlight-light hover:dark:bg-slate-500 rounded-full h-10 w-10 flex items-center justify-center transition-all text-slate-400 hover:text-highlight hover:dark:text-sky-300">
                   <i :class="item.icon" class="fa-duotone text-lg"></i>
                 </span>
               </button>
@@ -31,20 +31,20 @@
         enter-to="translate-x-0"
       >
         <div>
-          <h3 class="text-sky-900 font-bold opacity-75">VendFood</h3>
-          <h5 class="text-sky-900 text-xs italic">{{ activeItem }}</h5>
+          <h3 class="text-sky-900 dark:text-slate-100 font-bold opacity-75">VendFood</h3>
+          <h5 class="text-sky-900 dark:text-slate-100 text-xs italic">{{ activeItem }}</h5>
         </div>
         <div class="mt-5">
           <nav v-if="navList.length > 0" class="flex flex-col space-y-2">
             <router-link v-for="nav in navList"
                  :to="{name: nav.route}"
                  :class="[
-                     route.name === nav.route? 'bg-slate-100' : ''
+                     route.name === nav.route? 'bg-slate-100 dark:bg-slate-500' : ''
                  ]"
-                 class="hover:bg-slate-100 w-full rounded-sm px-2 py-1">
+                 class="hover:bg-slate-100 hover:dark:bg-slate-500 w-full rounded-sm px-2 py-1">
               <span
                   :class="[
-                     route.name === nav.route? 'space-x-2 font-bold text-sky-700' : ''
+                     route.name === nav.route? 'space-x-2 font-bold text-sky-700 dark:text-slate-100' : ''
                  ]"
                   class="flex items-center space-x-1.5 hover:space-x-2 text-sm">
                 <i class="fa-solid fa-dash"></i>
@@ -89,7 +89,7 @@ name: "Sidebar",
       /*Make sure all mainButton names are aligned with navigation*/
       mainButtons.forEach((menuItem) => {
         let currentName = route.fullPath.split('/')[1]
-        if (menuItem.name.toLowerCase() === currentName.toLowerCase()){
+        if (currentName.toLowerCase().includes(menuItem.name.toLowerCase())){
           console.log('Setting value')
           active = menuItem.name
         }

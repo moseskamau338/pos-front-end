@@ -12,6 +12,7 @@ const routes = [
         name: 'dashboard',
         component: () => import('@/pages/Dashboard.vue'),
         meta:{
+            title:'Dashboard',
             requiresAuth: true,
         }
 
@@ -26,6 +27,7 @@ const routes = [
         name: 'inventory-products',
         component: () => import('@/pages/inventory/Products.vue'),
         meta:{
+            title: 'Products',
             requiresAuth: true,
             breadcrumb: (route) => ([
                 {
@@ -39,11 +41,36 @@ const routes = [
             ]),
         }
     },
+     {
+        path: '/inventory/products/create',
+        name: 'inventory-products-create',
+        component: () => import('@/pages/inventory/CreateProduct.vue'),
+        meta:{
+            title:'Create Product',
+            requiresAuth: true,
+            breadcrumb: (route) => ([
+                {
+                    text: 'Inventory',
+                    active: false,
+                },
+                {
+                    text: 'Products',
+                    active: false,
+                    to: {name: 'inventory-products'}
+                },
+                {
+                    text: 'Create',
+                    active: true,
+                },
+            ]),
+        }
+    },
     {
         path: '/inventory/ingredients',
         name: 'inventory-ingredients',
         component: () => import('@/pages/inventory/Ingredients.vue'),
         meta:{
+            title:'Ingredients',
             requiresAuth: true,
             breadcrumb: (route) => ([
                 {
@@ -62,6 +89,7 @@ const routes = [
         name: 'inventory-purchases',
         component: () => import('@/pages/inventory/purchases.vue'),
         meta:{
+            title:'Purchases',
             requiresAuth: true,
             breadcrumb: (route) => ([
                 {
@@ -80,6 +108,7 @@ const routes = [
         name: 'inventory-suppliers',
         component: () => import('@/pages/inventory/Suppliers.vue'),
         meta:{
+            title:'Suppliers',
             requiresAuth: true,
             breadcrumb: (route) => ([
                 {
@@ -98,6 +127,7 @@ const routes = [
         name: 'inventory-wastes',
         component: () => import('@/pages/inventory/Wastes.vue'),
         meta:{
+            title:'Wastes',
             requiresAuth: true,
             breadcrumb: (route) => ([
                 {

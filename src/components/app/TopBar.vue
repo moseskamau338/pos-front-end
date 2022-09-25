@@ -3,23 +3,23 @@
         <div class="flex items-center">
           <button @click="uiStore.toggleCollapse()"
                   :class="[
-                      uiStore.sidebarExpanded ? 'bg-highlight-light shadow' : ''
+                      uiStore.sidebarExpanded ? 'bg-highlight-light dark:bg-slate-600 shadow' : ''
                   ]"
-                  class="hover:bg-highlight-light h-6 w-6 flex items-center justify-center rounded-full transition-all duration-300 group">
+                  class="hover:bg-highlight-light hover:dark:bg-slate-600 h-6 w-6 flex items-center justify-center rounded-full transition-all duration-300 group">
             <i
                 :class="[
-                    uiStore.sidebarExpanded ? 'fa-chevron-left text-highlight' : 'fa-align-left text-slate-400'
+                    uiStore.sidebarExpanded ? 'fa-chevron-left text-highlight dark:text-sky-300' : 'fa-align-left text-slate-400'
                 ]"
-                class="fa-solid group-hover:fa-chevron-left group-hover:text-highlight text-sm transition-all duration-300"></i>
+                class="fa-solid group-hover:text-highlight group-hover:dark:text-sky-300 text-sm transition-all duration-300"></i>
           </button>
         </div>
         <div class="flex justify-evenly items-center space-x-8">
-          <div class="mt-1 relative rounded-full w-[250px] bg-slate-200 dark:bg-gray-700">
+          <div class="mt-1 relative rounded-full w-[250px] bg-slate-100 dark:bg-brand-dark">
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <!-- Heroicon name: solid/mail -->
               <i class="fa-duotone fa-search dark:text-slate-300"></i>
             </div>
-            <input type="text" class="bg-transparent dark:text-slate-500 focus:ring-green-500 focus:border-green-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-full py-2" placeholder="Search here ...">
+            <input type="text" class="bg-transparent dark:text-slate-500 focus:ring-sky-500 block w-full pl-10 sm:text-sm border-none rounded-full py-2" placeholder="Search here ...">
           </div>
           <Toggler />
           <span>

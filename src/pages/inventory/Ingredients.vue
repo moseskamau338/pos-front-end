@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 class="font-semibold text-sky-900 text-xl">Manage Ingredients</h1>
     <p class="text-sm mt-2">
       Conveniently manage all your ingredient related operations here.
     </p>
@@ -11,7 +10,7 @@
         <CButton @click="showCreate = !showCreate" variant="info">&plus; Add new</CButton>
       </template>
       <template #actions>
-            <input type="text" class="shadow-sm leading-none py-2 focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Search records..">
+          <input type="text" class="dark:bg-brand-dark dark:border-slate-500 shadow-sm leading-none py-2 focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Search records..">
       </template>
     </TableLite>
   </section>

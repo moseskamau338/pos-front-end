@@ -91,22 +91,22 @@ export default {
   <div class="flex gap-3 justify-between m-3 items-center flex-wrap">
     <p class="text-xs">Page <b>{{ currentPage }} of {{ Math.ceil(totalRecords/pageSize) }}</b> <span><small>({{ totalRecords }} total records)</small></span></p>
     <div class="flex justify-between items-center gap-2 flex-wrap">
-      <select v-model="pageSize" @input="handlePageSizeChange" class="rounded leading-none border-gray-300 text-xs focus:outline-none focus:ring-green-500 focus:border-green-500 mr-3 py-1.5 dark:bg-brand-night dark:border-gray-500">
+      <select v-model="pageSize" @input="handlePageSizeChange" class="rounded dark:bg-brand-dark leading-none border-gray-300 text-xs focus:outline-none focus:ring-green-500 focus:border-green-500 mr-3 py-1.5 dark:bg-brand-night dark:border-gray-500">
         <option value="">---Page Size---</option>
         <option v-for="(item, idx) in [50, 100, 500, 1000, 5000, 10000 ]" :key="idx" :value="item">{{ item}}</option>
       </select>
       <div class="flex flex-wrap">
-        <button class="capitalize relative inline-flex items-center px-2 py-1 rounded-l-md border border-gray-300 bg-white dark:bg-brand-night dark:border-gray-500 text-xs font-medium text-gray-500 hover:bg-gray-50" @click="handlePrev" :disabled="isFirstPage">prev</button>
+        <button class="capitalize relative inline-flex items-center px-2 py-1 rounded-l-md border border-gray-300 bg-white dark:bg-brand-dark-box dark:border-gray-500 text-xs font-medium text-gray-500 hover:bg-gray-50" @click="handlePrev" :disabled="isFirstPage">prev</button>
       <button  v-for="item in pages"
         :key="item"
         :disabled="currentPage === item"
         @click="handleSelectPage(item)"
         :class="[
-            currentPage === item ? 'z-10 bg-green-50 dark:bg-green-500 dark:text-white border-green-500 text-green-600' : 'bg-white border-gray-300 dark:bg-brand-night dark:border-gray-500 dark:text-gray-300 text-gray-500 hover:bg-gray-50'
+            currentPage === item ? 'z-10 bg-green-50 dark:bg-green-500 dark:text-white border-green-500 text-green-600' : 'bg-white dark:bg-brand-dark-box border-gray-300 dark:bg-brand-night dark:border-gray-500 dark:text-gray-300 text-gray-500 hover:bg-gray-50'
         ]"
         aria-current="page"
         class="relative transition-all inline-flex items-center px-4 py-1 border text-xs font-medium">  {{ item }} </button>
-          <button class="capitalize relative inline-flex items-center px-2 py-1 rounded-r-md border border-gray-300 bg-white dark:bg-brand-night dark:border-gray-500 text-xs font-medium text-gray-500 hover:bg-gray-50" @click="handleNext" :disabled="isLastPage">next</button>
+          <button class="capitalize relative inline-flex items-center px-2 py-1 rounded-r-md border border-gray-300 bg-white dark:bg-brand-dark-box dark:bg-brand-night dark:border-gray-500 text-xs font-medium text-gray-500 hover:bg-gray-50" @click="handleNext" :disabled="isLastPage">next</button>
       </div>
     </div>
   </div>

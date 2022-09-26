@@ -142,6 +142,32 @@ const routes = [
         }
     },
 
+     /*
+    * #########################################
+    *        Point Of Sale Routes
+    * #########################################
+    * */
+     {
+        path: '/pos',
+        name: 'pos',
+        component: () => import('@/pages/Pos.vue'),
+        meta:{
+            //title:'Point Of Sale',
+            requiresAuth: true,
+            breadcrumb: (route) => ([
+                {
+                    text: 'Dashboard',
+                    active: false,
+                    to:{name:'dashboard'}
+                },
+                {
+                    text: 'Point of Sale',
+                    active: true,
+                },
+            ]),
+        }
+    },
+
 
 
     // default pages

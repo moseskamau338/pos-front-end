@@ -1,14 +1,14 @@
 <template>
-<div id="topbar" :class="[ uiStore.sidebarExpanded? 'ml-[230px]' : 'ml-20' ]" class="top-0 h-[60px] px-5 border-b flex items-center justify-between dark:bg-brand-dark-box dark:border-gray-700">
+<div id="topbar" :class="[ uiStore.isSidebarOpen()? 'ml-[230px]' : 'ml-20' ]" class="top-0 h-[60px] px-5 border-b flex items-center justify-between dark:bg-brand-dark-box dark:border-gray-700">
         <div class="flex items-center">
           <button @click="uiStore.toggleCollapse()"
                   :class="[
-                      uiStore.sidebarExpanded ? 'bg-highlight-light dark:bg-slate-600 shadow' : ''
+                      uiStore.isSidebarOpen() ? 'bg-highlight-light dark:bg-slate-600 shadow' : ''
                   ]"
                   class="hover:bg-highlight-light hover:dark:bg-slate-600 h-6 w-6 flex items-center justify-center rounded-full transition-all duration-300 group">
             <i
                 :class="[
-                    uiStore.sidebarExpanded ? 'fa-chevron-left text-highlight dark:text-sky-300' : 'fa-align-left text-slate-400'
+                    uiStore.isSidebarOpen() ? 'fa-chevron-left text-highlight dark:text-sky-300' : 'fa-align-left text-slate-400'
                 ]"
                 class="fa-solid group-hover:text-highlight group-hover:dark:text-sky-300 text-sm transition-all duration-300"></i>
           </button>
@@ -29,7 +29,7 @@
           </span>
         </div>
         </div>
-        <BreadCrumb :class="[ uiStore.sidebarExpanded? 'ml-[230px]' : 'ml-20' ]" class="pl-5" />
+        <BreadCrumb :class="[ uiStore.isSidebarOpen() ? 'ml-[230px]' : 'ml-20' ]" class="pl-5" />
 </template>
 
 <script>

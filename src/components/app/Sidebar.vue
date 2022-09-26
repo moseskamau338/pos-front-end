@@ -6,9 +6,9 @@
           </div>
           <div class="items-center text-center pt-5">
             <nav class="flex flex-col space-y-6">
-              <button @click="activeItem = item.name" class="flex items-center justify-center" v-for="item in mainButtons">
+              <button @click="switchMainNav(item)" class="flex items-center justify-center" v-for="item in mainButtons">
                 <span
-                    :class="[(activeItem === item.name) ? 'bg-slate-100 dark:bg-slate-700 dark:text-slate-300' : '',
+                    :class="[(uiStore.activeMenu === item.name) ? 'bg-slate-100 dark:bg-slate-700 dark:text-slate-300' : '',
                     (activeByRoute === item.name)? 'bg-highlight-light text-highlight dark:text-sky-300 dark:bg-slate-500' : ''
                     ]"
                       class="hover:bg-highlight-light hover:dark:bg-slate-500 rounded-full h-10 w-10 flex items-center justify-center transition-all text-slate-400 hover:text-highlight hover:dark:text-sky-300">
@@ -25,14 +25,14 @@
           </div>
 
         </div>
-      <TransitionRoot as="div" :show="uiStore.sidebarExpanded" class="w-[150px] max-w-[150px] py-5 px-2"
+      <TransitionRoot as="div" :show="uiStore.isSidebarOpen()" class="w-[150px] max-w-[150px] py-5 px-2"
         enter="translate-x-0 duration-500 ease-in-out"
         enter-from="-translate-x-100"
         enter-to="translate-x-0"
       >
         <div>
           <h3 class="text-sky-900 dark:text-slate-100 font-bold opacity-75">VendFood</h3>
-          <h5 class="text-sky-900 dark:text-slate-100 text-xs italic">{{ activeItem }}</h5>
+          <h5 class="text-sky-900 dark:text-slate-100 text-xs italic">{{ uiStore.activeMenu }}</h5>
         </div>
         <div class="mt-5">
           <nav v-if="navList.length > 0" class="flex flex-col space-y-2">
@@ -60,7 +60,7 @@
 
 <script>
 import {computed, ref, watch} from "vue";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {TransitionRoot, TransitionChild} from '@headlessui/vue'
 import {useUiStore} from "@/db/ui";
 import Empty from "@/components/app/Empty.vue";
@@ -75,15 +75,15 @@ name: "Sidebar",
   setup(){
     const uiStore = useUiStore()
     const route = useRoute()
+    const router = useRouter()
     let navList = ref([])
     const mainButtons = [
         {name:'Dashboard', icon: 'fa-grid-2'},
         {name:'Inventory', icon: 'fa-inventory'},
-        {name:'POS', icon: 'fa-cash-register'},
+        {name:'POS', icon: 'fa-cash-register', route:'pos'},
         {name:'Reporting', icon: 'fa-pie-chart'},
         {name:'Settings', icon: 'fa-user-gear'},
     ]
-    const activeItem = ref(mainButtons[0].name)
     const activeByRoute = computed(() => {
       let active = ''
       /*Make sure all mainButton names are aligned with navigation*/
@@ -98,9 +98,15 @@ name: "Sidebar",
       }
       return active
     })
+    const switchMainNav = (item) => {
+      uiStore.activeMenu = item.name
+      if (item.route){
+        //navigate there
+        router.push({name:item.route})
+      }
+    }
 
-
-    watch(activeItem,(newVal, oldVal) => {
+    watch(() => uiStore.activeMenu,(newVal, oldVal) => {
       if (!newVal) return []
 
       import(/* @vite-ignore */`/src/navigation/${newVal.toLowerCase()}`)
@@ -112,7 +118,7 @@ name: "Sidebar",
           })
     })
 
-    return {uiStore, activeByRoute, route, activeItem, mainButtons, navList}
+    return {uiStore, activeByRoute, switchMainNav, route, mainButtons, navList}
   }
 }
 </script>

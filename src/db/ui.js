@@ -10,6 +10,7 @@ export const useUiStore = defineStore('uiStore', {
             theme: false,
             cookie_consent: false,
             sidebarExpanded: true,
+            activeMenu: 'Dashboard',
             minimize_recon_stats:true,
         }
     },
@@ -19,6 +20,9 @@ export const useUiStore = defineStore('uiStore', {
         },
         toggleCookie(){
             this.cookie_consent = !this.cookie_consent
+        },
+        isSidebarOpen(){
+          return this.sidebarExpanded && this.activeMenu.toLowerCase() !== 'pos'
         },
         changeTheme(theme){
             if (theme === 'dark'){

@@ -10,13 +10,117 @@
         <div class="flex space-x-2.5">
           <img src="https://picsum.photos/id/237/200/200" alt="image" class="rounded shadow-md">
           <div class="w-full grid gap-2 grid-cols-1 lg:grid-cols-12 h-fit">
-            <div v-for="i in 6" class="col-span-4 relative border border-gray-300 rounded-md mb-5 px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="name" class="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900">Name</label>
-                <input type="text" name="name" id="name" class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Jane Doe">
-              </div>
+            <div class="col-span-6">
+               <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <div class="mt-1">
+                  <input type="text" name="name" id="name" class="shadow-sm focus:ring-sky-500 focus:border-sky-500 block w-full sm:text-sm border-gray-300 rounded-md placeholder-slate-400" placeholder="E.g Carrot Cake...">
+                </div>
+            </div>
+            <div class="col-span-6">
+               <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                <div class="mt-1 flex items-center space-x-2">
+                  <input type="number" name="price" id="price" class="shadow-sm focus:ring-sky-500 focus:border-sky-500 block w-full sm:text-sm border-gray-300 rounded-md placeholder-slate-400" placeholder="0.00">
+                  <select class="block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm rounded-md">
+                    <option>--Unit--</option>
+                    <option>KG</option>
+                    <option>Ltr</option>
+                    <option>Pcs</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-span-6">
+               <label for="name" class="block text-sm font-medium text-gray-700">Description</label>
+                <div class="mt-1">
+                  <textarea rows="4" name="comment" id="comment" class="shadow-sm focus:ring-sky-500 focus:border-sky-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                </div>
+            </div>
+            <div class="col-span-6">
+               <label for="tax" class="block text-sm font-medium text-gray-700">Tax</label>
+                <div class="mt-1">
+                  <input type="number" name="tax" id="tax" class="shadow-sm focus:ring-sky-500 focus:border-sky-500 block w-full sm:text-sm border-gray-300 rounded-md placeholder-slate-400" placeholder="0.00">
+                </div>
+            </div>
           </div>
         </div>
+
+    <!--  variants-->
+      <div class="grid grid-cols-1 lg:grid-cols-12 mt-5 border-t pt-5">
+        <div class="col-span-4">
+          <h3 class="font-bold text-sm">Edit Variations</h3>
+          <p class="text-slate-400 text-xs pr-2">
+            Variations are meant to convenience price items that have various variations.
+          </p>
+        </div>
+        <div class="col-span-8 grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white shadow border rounded p-4">
+          <div class="col-span-6">
+            <h5 class="text-sm font-medium">Flavours</h5>
+            <div class="mt-4">
+              <table class="w-full">
+                <thead>
+                    <th class="text-left text-xs">Name</th>
+                    <th class="text-left text-xs">+/- Cost (Ksh)</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mr-2">
+                        <input type="text" name="name" id="name" class="shadow-sm leading-none focus:ring-sky-500 focus:border-sky-500 block w-full py-1.5 sm:text-sm border-gray-300 rounded-md placeholder-slate-400" placeholder="E.g 5KG..">
+                    </td>
+                    <td>
+                        <input type="text" name="name" id="name" class="shadow-sm leading-none focus:ring-sky-500 focus:border-sky-500 block w-full py-1.5 sm:text-sm border-gray-300 rounded-md placeholder-slate-400" placeholder="E.g 200">
+                    </td>
+                    <td class="px-3">
+                      <button class="hover:shadow focus:ring-1 focus:ring-highlight flex items-center justify-center h-5 w-5 rounded-full bg-slate-300">
+                        <i class="fas fa-plus text-slate-500"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-span-6">
+            <h5 class="text-sm font-medium">Weights</h5>
+            <div class="mt-4">
+              <table class="w-full">
+                <thead>
+                    <th class="text-left text-xs">Tag</th>
+                    <th class="text-left text-xs">+/- Cost (Ksh)</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mr-2">
+                        <input type="text" name="name" id="name" class="shadow-sm leading-none focus:ring-sky-500 focus:border-sky-500 block w-full py-1.5 sm:text-sm border-gray-300 rounded-md placeholder-slate-400" placeholder="E.g 5KG..">
+                    </td>
+                    <td>
+                        <input type="text" name="name" id="name" class="shadow-sm leading-none focus:ring-sky-500 focus:border-sky-500 block w-full py-1.5 sm:text-sm border-gray-300 rounded-md placeholder-slate-400" placeholder="E.g 200">
+                    </td>
+                    <td class="px-3">
+                      <button class="hover:shadow focus:ring-1 focus:ring-highlight flex items-center justify-center h-5 w-5 rounded-full bg-slate-300">
+                        <i class="fas fa-plus text-slate-500"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </fieldset>
+
+    <!--recipe section-->
+    <div class="mt-8">
+      <h2 class="font-bold text-lg">How do you cook it?</h2>
+      <p class="text-slate-400 text-sm">Add ingredients below to track ingredient stock while creating products.</p>
+
+      input
+    </div>
+
+    <div>
+
+    </div>
   </section>
 </template>
 

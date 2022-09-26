@@ -7,7 +7,7 @@
       <TopBar />
     <main
         :class="[ uiStore.sidebarExpanded? 'ml-[230px]' : 'ml-[80px]' ]"
-        class="px-5 py-3 max-h-screen overflow-y-auto dark:bg-brand-dark dark:border-gray-600 h-screen">
+        class="px-5 py-3 max-h-screen overflow-y-scroll dark:bg-brand-dark dark:border-gray-600 h-screen">
       <h1 class="mb-5 text-xl font-bold">{{route.meta.title}}</h1>
       <slot></slot>
     </main>

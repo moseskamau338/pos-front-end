@@ -34,7 +34,7 @@
                             <input id="selection" type="checkbox" class="focus:ring-green-500 h-4 w-4 text-brand-green border-gray-300 rounded" />
                           </div>
                           <div class="ml-3 text-xs">
-                            <label for="selection" class="font-medium">{{(field.label || makeTitle(field.key)).toUpperCase()}}</label>
+                            <label for="selection" class="font-medium">{{(field.label || makeTitle(field.key, '_')).toUpperCase()}}</label>
                           </div>
                         </div>
                       </slot>

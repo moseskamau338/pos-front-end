@@ -39,12 +39,12 @@
             <router-link v-for="nav in navList"
                  :to="{name: nav.route}"
                  :class="[
-                     route.name === nav.route? 'bg-slate-100 dark:bg-slate-500' : ''
+                     route.name.includes(nav.route) ? 'bg-slate-100 dark:bg-slate-500' : ''
                  ]"
                  class="hover:bg-slate-100 hover:dark:bg-slate-500 w-full rounded-sm px-2 py-1">
               <span
                   :class="[
-                     route.name === nav.route? 'space-x-2 font-bold text-sky-700 dark:text-slate-100' : ''
+                     route.name.includes(nav.route) ? 'space-x-2 font-bold text-sky-700 dark:text-slate-100' : ''
                  ]"
                   class="flex items-center space-x-1.5 hover:space-x-2 text-sm">
                 <i class="fa-solid fa-dash"></i>
@@ -90,12 +90,10 @@ name: "Sidebar",
       mainButtons.forEach((menuItem) => {
         let currentName = route.fullPath.split('/')[1]
         if (currentName.toLowerCase().includes(menuItem.name.toLowerCase())){
-          console.log('Setting value')
           active = menuItem.name
         }
       })
       if (!active){
-         console.log('Setting first value')
           active = mainButtons[0].name
       }
       return active

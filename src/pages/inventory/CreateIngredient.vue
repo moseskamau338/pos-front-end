@@ -16,7 +16,7 @@
           <h3 class="text-sm font-bold">Name</h3>
         </div>
         <div class="col-span-8">
-            <input type="text" class="placeholder-gray-300 shadow-sm leading-none py-2 focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Ingredient Name">
+            <input type="text" class="placeholder-gray-300 dark:placeholder-slate-500 shadow-sm leading-none py-2 focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 rounded-md dark:border-slate-500 dark:bg-brand-dark" placeholder="Ingredient Name">
         </div>
       </div>
 
@@ -25,7 +25,7 @@
           <h3 class="text-sm font-bold">Description</h3>
         </div>
         <div class="col-span-8">
-              <textarea rows="4" name="comment" id="comment" class="shadow-sm focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 rounded-md placeholder-gray-300" placeholder="What's this for?"></textarea>
+              <textarea rows="4" name="comment" id="comment" class="shadow-sm focus:ring-highlight focus:border-highlight block dark:border-slate-500 dark:bg-brand-dark w-full sm:text-sm border-gray-300 rounded-md placeholder-gray-300 dark:placeholder-slate-500" placeholder="What's this for?"></textarea>
         </div>
       </div>
 
@@ -37,21 +37,21 @@
              <div class="sm:col-span-2">
                 <label class="block text-xs font-medium"> Current Stock </label>
                 <div class="mt-1">
-                  <input type="number" class="shadow-sm focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 rounded-md">
+                  <input type="number" class="shadow-sm focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 rounded-md dark:border-slate-500 dark:bg-brand-dark">
                 </div>
               </div>
 
               <div class="sm:col-span-2">
                 <label class="block text-xs font-medium"> Alert Stock Level </label>
                 <div class="mt-1">
-                  <input type="number" min="0" class="shadow-sm focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 rounded-md">
+                  <input type="number" min="0" class="shadow-sm focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 rounded-md dark:border-slate-500 dark:bg-brand-dark">
                 </div>
               </div>
 
               <div class="sm:col-span-2">
                 <label for="postal-code" class="block text-xs font-medium"> Unit </label>
                 <div class="mt-1">
-                  <select id="location" name="location" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-highlight focus:border-highlight sm:text-sm rounded-md">
+                  <select id="location" name="location" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-highlight focus:border-highlight sm:text-sm rounded-md dark:border-slate-500 dark:bg-brand-dark">
                     <option>Kilograms</option>
                     <option selected>Liters</option>
                     <option>Pieces</option>
@@ -72,9 +72,9 @@
                 <input
                     v-model="newSupplier"
                     @keydown.enter="addSupplier"
-                    class="appearance-none placeholder-gray-300 block w-full bg-white text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:ring-1 focus:ring-highlight focus:boring-highlight" placeholder="Search suppliers and hit enter">
+                    class="appearance-none placeholder-gray-300 dark:placeholder-slate-500 block w-full bg-white border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:ring-1 focus:ring-highlight focus:boring-highlight dark:border-slate-500 dark:bg-brand-dark" placeholder="Search suppliers and hit enter">
                 <!-- selections -->
-                <div v-for="name in suppliers" class="bg-blue-100 inline-flex items-center text-sm rounded mt-2 mr-1 overflow-hidden">
+                <div v-for="name in suppliers" class="bg-blue-100 dark:bg-sky-600 inline-flex items-center text-sm rounded mt-2 mr-1 overflow-hidden">
                   <span class="ml-2 mr-1 leading-relaxed truncate max-w-xs px-1">{{ name }}</span>
                   <button @click="removeSupplier(name)" class="w-6 h-8 inline-block align-middle text-gray-500 bg-blue-200 focus:outline-none">
                     <svg class="w-6 h-6 fill-current mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z"/></svg>

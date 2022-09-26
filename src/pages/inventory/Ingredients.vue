@@ -10,7 +10,7 @@
         <CButton @click="showCreate = !showCreate" variant="info">&plus; Add new</CButton>
       </template>
       <template #actions>
-          <input type="text" class="dark:bg-brand-dark dark:border-slate-500 shadow-sm leading-none py-2 focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Search records..">
+          <input type="text" class="dark:bg-brand-dark dark:border-slate-500 shadow-sm leading-none py-2 focus:ring-highlight focus:border-highlight block w-full sm:text-sm border-gray-300 dark:border-slate-500 dark:bg-brand-dark rounded-md" placeholder="Search records..">
       </template>
     </TableLite>
   </section>
@@ -49,7 +49,4 @@ export default {
 </script>
 
 <style scoped>
-#modal::backdrop{
-  @apply bg-red-600
-}
 </style>

@@ -8,10 +8,10 @@
             <nav class="flex flex-col space-y-6">
               <button @click="switchMainNav(item)" class="flex items-center justify-center" v-for="item in mainButtons">
                 <span
-                    :class="[(uiStore.activeMenu === item.name) ? 'bg-slate-100 dark:bg-slate-700 dark:text-slate-300' : '',
-                    (activeByRoute === item.name)? 'bg-highlight-light text-highlight dark:text-sky-300 dark:bg-slate-500' : ''
+                    :class="[(uiStore.activeMenu === item.name) ? 'bg-slate-100 dark:bg-slate-700 dark:text-slate-300' : 'text-slate-400',
+                    (activeByRoute === item.name)? 'bg-highlight-light text-highlight dark:text-sky-300 dark:bg-slate-500' : 'text-slate-400'
                     ]"
-                      class="hover:bg-highlight-light hover:dark:bg-slate-500 rounded-full h-10 w-10 flex items-center justify-center transition-all text-slate-400 hover:text-highlight hover:dark:text-sky-300">
+                      class="hover:bg-highlight-light hover:dark:bg-slate-500 rounded-full h-10 w-10 flex items-center justify-center transition-all hover:text-highlight hover:dark:text-sky-300">
                   <i :class="item.icon" class="fa-duotone text-lg"></i>
                 </span>
               </button>

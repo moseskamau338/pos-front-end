@@ -1,127 +1,103 @@
 <template>
 <section class="grid grid-cols-12 gap-7 mx-5 h-[90vh]">
   <div class="col-span-8">
-    <header class="flex items-center justify-between">
-      <h4 class="text-sm font-bold">Categories</h4>
-      <div class="flex items-center space-x-2">
-        <i class="fas fa-chevron-left"></i>
-        <i class="fas fa-chevron-right"></i>
-      </div>
-    </header>
-
-  <!--  categories-->
-  <div class="flex items-center overflow-x-auto mt-2 border-r border-l scroll-smooth scrollbar-hide">
-    <div v-for="i in 20" class="bg-white mr-2 flex items-center p-4 shadow shrink-0 grow-0">category {{ i }}</div>
-  </div>
+   <Categories />
     <section class="max-h-[70vh] overflow-y-auto mt-5">
       <!--items-->
-      <div class="mt-5 grid gap-4 grid-cols-6 lg:grid-cols-12">
-        <button v-for="i in 60" class="col-span-3 w-fit h-fit bg-white shadow rounded hover:ring text-left focus:ring-highlight">
-          <div class="aspect-auto p-2">
-            <img :src="`https://picsum.photos/id/${Math.floor(Math.random()*1000)}/1200/700/`" alt="image" class="rounded shadow w-40 object-cover">
-          </div>
-          <div class="p-2">
-            <h6 class="text-xs font-bold">Black Forest Cake</h6>
-            <small class="text-gray-400 text-xs">Description here </small>
-          </div>
-          <div class="flex justify-end px-2">
-            <span class="text-highlight">35.00 $</span>
-          </div>
-        </button>
-      </div>
+      <Items />
     </section>
   </div>
   <div class="col-span-4">
     <header class="flex items-center justify-between">
       <h4 class="text-sm font-bold">Draft</h4>
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center space-x-5">
         <button class="hover:bg-slate-200 transition-all duration-200 flex justify-center items-center h-5 w-5 rounded-full group">
           <i class="fas fa-plus text-xs transition-all duration-200 group-hover:text-highlight"></i>
         </button>
         <button class="hover:bg-red-100 transition-all duration-200 flex justify-center items-center h-5 w-5 rounded-full group">
           <i class="fas fa-trash text-xs transition-all duration-200 group-hover:text-red-500"></i>
         </button>
+
+      <!--  button-->
+         <Menu as="div" class="relative inline-block text-left">
+            <div>
+              <MenuButton
+                class="transition-all flex items-center justify-center h-5 w-5 rounded-full dark:bg-slate-600 bg-slate-200 hover:bg-slate-300 hover:text-highlight hover:dark:text-sky-300 focus:ring">
+                <i class="fas fa-square-list text-xs"></i>
+              </MenuButton>
+            </div>
+
+            <transition
+              enter-active-class="transition duration-100 ease-out"
+              enter-from-class="transform scale-95 opacity-0"
+              enter-to-class="transform scale-100 opacity-100"
+              leave-active-class="transition duration-75 ease-in"
+              leave-from-class="transform scale-100 opacity-100"
+              leave-to-class="transform scale-95 opacity-0"
+            >
+              <MenuItems
+                class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-brand-dark dark:border dark:border-slate-600 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div class="px-1 py-1">
+                  <MenuItem v-slot="{ active }">
+                    <button
+                        @click="showOrders = true"
+                      :class="[
+                        active ? 'bg-highlight-light/50  dark:bg-highlight' : '',
+                        'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                      ]"
+                    >
+                      Order Processing List
+                    </button>
+                  </MenuItem>
+                  <MenuItem v-slot="{ active }">
+                    <button
+                      :class="[
+                        active ? 'bg-highlight-light/50 dark:bg-highlight' : '',
+                        'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                      ]"
+                    >
+                      Duplicate
+                    </button>
+                  </MenuItem>
+                </div>
+              </MenuItems>
+            </transition>
+          </Menu>
       </div>
     </header>
 
-    <div class="bg-white dark:bg-brand-dark-box dark:border-slate-700 shadow px-3 py-2 mt-4 rounded border border-slate-50">
-      <ul class="space-y-4">
-        <li :key="item" v-for="item in [
-            {name: 'Zucchini Cake', description:'lorem ipsum dolor sit.', currency:'$', amount:'12', count:2},
-            {name: 'Zucchini Cake', description:'lorem ipsum dolor sit.', currency:'$', amount:'12', count:2},
-            {name: 'Zucchini Cake', description:'lorem ipsum dolor sit.', currency:'$', amount:'12', count:2},
-            {name: 'Zucchini Cake', description:'lorem ipsum dolor sit.', currency:'$', amount:'12', count:2},
-            {name: 'Zucchini Cake', description:'lorem ipsum dolor sit.', currency:'$', amount:'12', count:2},
-        ]" class="group">
-          <div class="flex justify-between">
-            <div class="flex space-x-2">
-              <Avatar size="small" :text="item.name" />
-              <div>
-                <h3 class="text-xs text-slate-600 font-bold">
-                  {{ item.name }}
-                  <button class="transition-all invisible group-hover:visible"><i class="fas fa-edit"></i></button>
-                </h3>
-                <p class="text-xs text-gray-400">{{ item.description }}</p>
-              </div>
-            </div>
-            <span class="text-sm font-bold text-gray-500">{{ item.currency }} {{ currency(item.amount) }}</span>
-          </div>
-        </li>
-      </ul>
-
-      <div class="mt-4 border-t pt-4">
-        <table class="w-full">
-          <tbody>
-          <tr>
-            <td class="text-sm">Subtotal</td>
-            <td>
-              <div class="text-right text-sm">30.00</div>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-sm">Tax</td>
-            <td>
-              <div class="text-right text-sm">0.00</div>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-sm">Discount</td>
-            <td>
-              <div class="text-right text-sm">0.00</div>
-            </td>
-          </tr>
-
-          <tr>
-            <td class="text-lg py-4 font-bold text-highlight">Total</td>
-            <td>
-              <div class="text-right text-lg font-bold text-highlight py-4">Ksh 3223442210.00</div>
-            </td>
-          </tr>
-
-          </tbody>
-        </table>
-
-        <CButton class="w-full text-lg mt-5 flex justify-between">
-          <span>Checkout</span>
-          <span>$60.00</span>
-        </CButton>
-      </div>
-    </div>
+    <Cart />
   </div>
 </section>
+<!-- modals-->
+<Orders :show="showOrders" @close="showOrders = false" />
+
+
 </template>
 
 <script>
-import Avatar from "@/components/elements/Avatar.vue";
-import {inject} from "vue";
 import CButton from "@/components/elements/CButton.vue";
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+
+import Categories from "@/components/page/pos/Categories.vue";
+import Items from "@/components/page/pos/Items.vue";
+import Cart from "@/components/page/pos/Cart.vue";
+import {ref} from "vue";
+import Orders from "@/components/page/pos/Orders.vue";
 export default {
   name: "Pos",
-  components: {CButton, Avatar},
-  setup(){
-    const {currency} = inject('helpers')
+  components: {
+    Orders,
+    Cart,
+    Items,
+    Categories,
+    Menu, MenuButton, MenuItems,
+    MenuItem, CButton
+  },
+  setup() {
+    const showOrders = ref(false)
 
-    return {currency}
+    return {showOrders}
   }
 }
 </script>

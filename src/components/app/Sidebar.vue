@@ -1,5 +1,5 @@
 <template>
-<div class="absolute bg-white dark:bg-brand-dark-box dark:border-gray-700 border min-h-screen flex">
+<div class="absolute bg-white dark:bg-brand-dark-box dark:border-gray-700 border min-h-full flex">
       <div class="w-[80px] max-w-[80px] inset-0 flex border-r dark:border-r-0 flex-col flex-wrap overflow-x-hidden">
           <div class="h-[60px] flex justify-center items-center">
             -----

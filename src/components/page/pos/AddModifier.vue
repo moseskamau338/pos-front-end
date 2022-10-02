@@ -2,8 +2,8 @@
  <Modal :show="show" @close="close" source="orders">
     <template #title>
       <span class="flex text-xl space-x-1.5 items-center font-bold">
-        <i class="fad fa-layer-group"></i>
-        <span>Order Queue</span>
+        <i class="fad fa-edit"></i>
+        <span>Edit Item</span>
       </span>
     </template>
     <template #body>
@@ -99,7 +99,7 @@ import Dropdown from "@/components/elements/Dropdown.vue";
 
 
 export default {
-  name: "Orders",
+  name: "AddModifier",
   components:{Dropdown, Badge, TableLite, CButton, Modal},
    props:{
     show:{required: true, type: Boolean}

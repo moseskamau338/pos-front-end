@@ -72,8 +72,10 @@ export class ThemeGenerator{
          switch(status) {
             case 'success': return 'bg-green-600 text-green-100';
             case 'danger' :return 'bg-red-600 text-red-100';
+            case 'dark' : return 'bg-brand-dark text-white';
+            case 'secondary' : return 'bg-transparent border border-gray-500';
             case 'warning' : return 'bg-orange-600 text-orange-100';
-            default: return 'bg-blue-600 dark:bg-blue-300 border-blue-100';
+            default: return 'bg-sky-600 dark:bg-sky-300 border-sky-100 text-white';
         }
     }
     avatar(variant){

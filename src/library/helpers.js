@@ -37,9 +37,11 @@ export const functions = {
           {name:'active', status:'success'},
           {name:'inactive', status:'danger'},
           {name:'pending', status:'danger'},
-          {name:'suggested', status:'warning'},
-          {name:'user', status:'success'},
-          {name:'user-p', status:'success'},
+          {name:'processing', status:'info'},
+          {name:'walk-in', status:'secondary'},
+          {name:'completed', status:'success'},
+          {name:'hold', status:'warning'},
+          {name:'draft', status:'dark'},
         ].concat(mappings)
         //get status mapping:
         let mapping = find(newmappings, status)[0]

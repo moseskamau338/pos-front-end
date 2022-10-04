@@ -1,7 +1,7 @@
 <template>
 <div class="bg-white dark:bg-brand-dark-box dark:border-slate-700 shadow mt-4 rounded border border-slate-50">
         <ul class="space-y-4 max-h-[350px] overflow-y-auto" v-if="poStore.selectedProducts.length > 0">
-          <li :key="item" v-for="item in poStore.selectedProducts" class="relative cursor-pointer hover:bg-slate-100 px-3 py-2">
+          <li :key="item" v-for="item in poStore.selectedProducts" class="relative cursor-pointer hover:bg-slate-100 hover:dark:bg-slate-900 dark:text-white px-3 py-2">
             <div class="flex justify-between p-2" @click="poStore.toggleExpand($event, item.id)">
               <div class="flex space-x-2">
                 <Avatar size="small" :text="item.name" />
@@ -18,16 +18,16 @@
               <div class="grid grid-cols-2 gap-4 lg:grid-cols-12">
                 <div class="col-span-4">
                   <label class="text-[10px] font-bold text-slate-400">Quantity</label>
-                  <input v-model.number="item['quantity']" type="number" class="mt-1 block w-full border border-gray-300 rounded shadow-sm py-1 px-3 focus:outline-none focus:ring-highlight focus:border-indigo-500 text-xs">
+                  <input v-model.number="item['quantity']" type="number" class="mt-1 block w-full border border-gray-300 rounded shadow-sm py-1 px-3 focus:outline-none focus:ring-highlight focus:border-indigo-500 dark:bg-brand-dark dark:border-gray-500 text-xs">
                 </div>
                 <div class="col-span-4">
                   <label class="text-[10px] font-bold text-slate-400">Price</label>
-                  <input v-model.number="item['price']" type="number" class="mt-1 block w-full border border-gray-300 rounded shadow-sm py-1 px-3 focus:outline-none focus:ring-highlight focus:border-indigo-500 text-xs">
+                  <input v-model.number="item['price']" type="number" class="mt-1 block w-full border border-gray-300 rounded shadow-sm py-1 px-3 focus:outline-none focus:ring-highlight focus:border-indigo-500 text-xs dark:bg-brand-dark dark:border-gray-500">
                 </div>
                 <div class="col-span-4">
                   <label class="text-[10px] font-bold text-slate-400">Discount</label>
                   <div class="mt-1 relative rounded-md shadow-sm">
-                    <input v-model.number="item['discount']" type="number" class="appearance-none focus:border-highlight focus:border-highlight block w-full py-1 pl-3 pr-12 sm:text-xs border-gray-300 rounded" placeholder="0.00" aria-describedby="price-currency">
+                    <input v-model.number="item['discount']" type="number" class="appearance-none focus:border-highlight focus:border-highlight block w-full py-1 pl-3 pr-12 sm:text-xs border-gray-300 rounded dark:bg-brand-dark dark:border-gray-500" placeholder="0.00" aria-describedby="price-currency">
                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                       <span class="text-gray-400 sm:text-xs"> {{ Math.floor((item['discount']/ (item['price'] * item['quantity']))*100) || 0 }}% </span>
                     </div>
@@ -36,11 +36,11 @@
 
                 <div class="col-span-6">
                   <label class="text-[10px] font-bold text-slate-400">Note</label>
-                    <textarea v-model="item['note']" rows="2" class="focus:ring-highlight focus:border-highlight block w-full sm:text-xs border-gray-300 rounded"></textarea>
+                    <textarea v-model="item['note']" rows="2" class="focus:ring-highlight focus:border-highlight block w-full sm:text-xs border-gray-300 rounded dark:bg-brand-dark dark:border-gray-500"></textarea>
                 </div>
                 <div class="col-span-4">
                   <label class="text-[10px] font-bold text-slate-400">Tax</label>
-                  <input v-model.number="item['tax']" type="number" class="mt-1 block w-full border border-gray-300 rounded shadow-sm py-1 px-3 focus:outline-none focus:ring-highlight focus:border-indigo-500 text-xs">
+                  <input v-model.number="item['tax']" type="number" class="mt-1 block w-full border border-gray-300 rounded shadow-sm py-1 px-3 focus:outline-none focus:ring-highlight focus:border-indigo-500 text-xs dark:bg-brand-dark dark:border-gray-500">
                 </div>
 
 
@@ -61,26 +61,26 @@
           <tr>
             <td class="text-sm">Subtotal</td>
             <td>
-              <div class="text-right text-sm">{{ currency(poStore.cartTotals().subtotal) }}</div>
+              <div class="text-right text-sm">{{ currency(poStore.cartTotals.subtotal) }}</div>
             </td>
           </tr>
           <tr>
             <td class="text-sm">Tax</td>
             <td>
-              <div class="text-right text-sm">{{ currency(poStore.cartTotals().tax) }}</div>
+              <div class="text-right text-sm">{{ currency(poStore.cartTotals.tax) }}</div>
             </td>
           </tr>
           <tr>
             <td class="text-sm">Discount</td>
             <td>
-              <div class="text-right text-sm">{{currency(poStore.cartTotals().discount)}}</div>
+              <div class="text-right text-sm">{{currency(poStore.cartTotals.discount)}}</div>
             </td>
           </tr>
 
           <tr>
             <td class="text-lg py-4 font-bold text-highlight">Total</td>
             <td>
-              <div class="text-right text-lg font-bold text-highlight py-4">{{ poStore.currency }} {{ currency(poStore.cartTotals().total) }}</div>
+              <div class="text-right text-lg font-bold text-highlight py-4">{{ poStore.currency }} {{ currency(poStore.cartTotals.total) }}</div>
             </td>
           </tr>
 
@@ -89,7 +89,7 @@
 
         <CButton class="w-full text-lg mt-5 flex justify-between">
           <span>Checkout</span>
-          <span>{{ poStore.currency }} {{ currency(poStore.cartTotals().total) }}</span>
+          <span>{{ poStore.currency }} {{ currency(poStore.cartTotals.total) }}</span>
         </CButton>
       </div>
     </div>

@@ -58,7 +58,7 @@ export const usePosStore = defineStore('posStore', () => {
         function cartTotals() {
           let totals = {total:0, subtotal:0, tax:0, discount:0}
           selectedProducts.value.forEach((item) => {
-            totals.subtotal += ((item['amount'] || 0) * (item['quantity'] || 0)) - (item['discount'] || 0)
+            totals.subtotal += ((item['price'] || 0) * (item['quantity'] || 0)) - (item['discount'] || 0)
             totals.discount += (item['discount'] || 0)
             totals.tax += (item['tax'] || 0)
           })

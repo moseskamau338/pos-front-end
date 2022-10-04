@@ -9,7 +9,7 @@
         <i class="fa-solid fa-sort text-gray-400 text-sm" aria-hidden="true"></i>
       </ComboboxButton>
 
-      <ComboboxOptions class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm dark:bg-brand-night-box">
+      <ComboboxOptions class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white dark:bg-brand-box py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
         <ComboboxOption v-for="person in filteredPeople" :key="person.id" :value="person" as="template" v-slot="{ active, selected }">
           <li :class="['relative cursor-default select-none py-2 pl-3 pr-9', active ? 'bg-highlight text-white' : 'text-gray-900']">
             <div class="flex items-center">

@@ -4,31 +4,48 @@
 import {defineStore} from "pinia";
 import {find} from "lodash/collection.js";
 import {clone} from "lodash";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 
 export const usePosStore = defineStore('posStore', () => {
 
     //booleans
     const showModifier = ref(false),
     currency = ref('KES'),
+    query = ref(''),
     products = ref([
           {
               id:1,
-              image:`https://picsum.photos/id/${Math.floor(Math.random()*1000)}/1200/700/`,
+              image:'/images/food.svg',
               name:'Black Forest',
               description:'',
               price:90, discount:0, tax:0, quantity:0
           },
-          {id:2,image:`https://picsum.photos/id/${Math.floor(Math.random()*1000)}/1200/700/`,name:'Fruit Cake',
+        {
+              id:19,
+              image:'/images/food.svg',
+              name:'Another cake',
+              description:'',
+              price:1000, discount:0, tax:0, quantity:0
+          },
+          {id:2,image:'/images/food.svg',name:'Fruit Cake',
               description:'', price:200, discount:0, tax:0, quantity:0},
-          {id:3,image:`https://picsum.photos/id/${Math.floor(Math.random()*1000)}/1200/700/`,name:'Coconut Cake', description:'', price:809.9, discount:0, tax:0, quantity:0},
-          {id:4,image:`https://picsum.photos/id/${Math.floor(Math.random()*1000)}/1200/700/`,name:'Zucchini Cake', description:'', price:12.5, discount:0, tax:0, quantity:0},
-          {id:5,image:`https://picsum.photos/id/${Math.floor(Math.random()*1000)}/1200/700/`,name:'Muffles', description:'', price:78.8, discount:0, tax:0, quantity:0},
-          {id:6,image:`https://picsum.photos/id/${Math.floor(Math.random()*1000)}/1200/700/`,name:'Sweet Cake', description:'', price:467.9, discount:0, tax:0, quantity:0},
-          {id:7,image:`https://picsum.photos/id/${Math.floor(Math.random()*1000)}/1200/700/`,name:'Dunkies', description:'', price:342.99, discount:0, tax:0, quantity:0},
+          {id:3,image:'/images/food.svg',name:'Coconut Cake', description:'', price:809.9, discount:0, tax:0, quantity:0},
+          {id:4,image:'/images/food.svg',name:'Zucchini Cake', description:'', price:12.5, discount:0, tax:0, quantity:0},
+          {id:5,image:'/images/food.svg',name:'Muffles', description:'', price:78.8, discount:0, tax:0, quantity:0},
+          {id:6,image:'/images/food.svg',name:'Sweet Cake', description:'', price:467.9, discount:0, tax:0, quantity:0},
+          {id:7,image:'/images/food.svg',name:'Dunkies', description:'', price:342.99, discount:0, tax:0, quantity:0},
         ]),
     selectedProducts = ref([]),
     expandedItems = ref([])
+
+    const filteredClients = computed(() => {
+      if (query.value.length === 0){
+        return products.value
+      }else{
+        //clients.value.
+        return products.value.filter((product) => product.name.toLowerCase().includes(query.value.toLowerCase()))
+      }
+    })
 
 
       function toggleSelect(e, item) {
@@ -70,7 +87,7 @@ export const usePosStore = defineStore('posStore', () => {
         return {
             showModifier, currency,
             products, selectedProducts,
-            expandedItems,
+            expandedItems, query, filteredClients,
             toggleSelect, isExpanded, isSelected,
             cartTotals, toggleExpand
         }

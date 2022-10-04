@@ -8,8 +8,8 @@
     </header>
 
   <!--  categories-->
-  <div class="flex items-center overflow-x-auto mt-2 border-r border-l scroll-smooth scrollbar-hide">
-    <div v-for="i in 20" class="bg-white dark:bg-brand-dark-box mr-2 flex items-center p-4 shadow shrink-0 grow-0">category {{ i }}</div>
+  <div class="flex items-center overflow-x-auto mt-2 border-r border-l scroll-smooth scrollbar-hide px-10">
+    <div v-for="i in 20" :style="`background-color: #${Math.floor(Math.random() * 1000)}`" class="bg-white dark:bg-brand-dark-box mr-2 flex items-center p-4 shadow shrink-0 grow-0 rounded text-white">category {{ i }}</div>
   </div>
 </template>
 

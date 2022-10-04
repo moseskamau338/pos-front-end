@@ -9,7 +9,7 @@
   </div>
   <div class="col-span-4">
     <header class="flex items-center justify-between">
-      <h4 class="text-sm font-bold">Draft</h4>
+      <SearchSelect />
       <div class="flex items-center space-x-5">
         <button class="hover:bg-slate-200 transition-all duration-200 flex justify-center items-center h-5 w-5 rounded-full group">
           <i class="fas fa-plus text-xs transition-all duration-200 group-hover:text-highlight"></i>
@@ -84,9 +84,11 @@ import Items from "@/components/page/pos/Items.vue";
 import Cart from "@/components/page/pos/Cart.vue";
 import {ref} from "vue";
 import Orders from "@/components/page/pos/Orders.vue";
+import SearchSelect from "@/components/elements/SearchSelect.vue";
 export default {
   name: "Pos",
   components: {
+    SearchSelect,
     Orders,
     Cart,
     Items,

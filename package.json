@@ -1,11 +1,11 @@
 {
-  "name": "vue-tests",
+  "name": "vue-ts",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -14,14 +14,13 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.7",
-    "@vueuse/core": "^9.2.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "dayjs": "^1.11.5",
     "lodash": "^4.17.21",
     "mitt": "^3.0.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.22",
     "pinia-plugin-persist": "^1.0.0",
-    "tailwind-scrollbar-hide": "^1.1.7",
     "vue": "^3.2.37",
     "vue-router": "^4.1.5",
     "vue3-popper": "^1.5.0"
@@ -29,8 +28,10 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.0",
     "autoprefixer": "^10.4.12",
-    "postcss": "^8.4.16",
+    "postcss": "^8.4.17",
     "tailwindcss": "^3.1.8",
-    "vite": "^3.1.0"
+    "typescript": "^4.6.4",
+    "vite": "^3.1.0",
+    "vue-tsc": "^0.40.4"
   }
 }

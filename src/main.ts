@@ -3,8 +3,10 @@ import { createPinia } from 'pinia'
 import piniaPersist from 'pinia-plugin-persist'
 import mitt from "mitt";
 import './assets/css/index.css'
+// @ts-ignore
 import router from './router'
 import BaseLayout from '@/components/layouts/BaseLayout.vue'
+// @ts-ignore
 import {functions} from './library/helpers'
 
 import App from './App.vue'
@@ -21,6 +23,7 @@ app.provide('helpers', functions)
     .use(router)
     .use(pinia)
 
+// @ts-ignore
 import {useUiStore} from '@/db/ui'
 useUiStore().init()
 

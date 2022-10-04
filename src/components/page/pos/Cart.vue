@@ -1,10 +1,10 @@
 <template>
 <div class="bg-white dark:bg-brand-dark-box dark:border-slate-700 shadow mt-4 rounded border border-slate-50">
-        <ul class="space-y-4 max-h-[350px] overflow-y-auto" v-if="selectedProducts.length > 0">
+        <ul class="divide-y min-h-[350px] max-h-[350px] overflow-y-scroll scroll-smooth" v-if="selectedProducts.length > 0">
           <li :key="item" v-for="item in selectedProducts" class="relative cursor-pointer hover:bg-slate-100 hover:dark:bg-slate-900 dark:text-white px-3 py-2">
-            <div class="flex justify-between p-2" @click="poStore.toggleExpand($event, item.id)">
+            <div class="flex justify-between p-2 relative" @click="poStore.toggleExpand($event, item.id)">
               <div class="flex space-x-2">
-                <Avatar size="small" :text="item.name" />
+                <Avatar size="small" variant="info" :text="item.name" />
                 <div>
                   <h3 class="text-xs text-slate-600 dark:text-slate-300 font-bold">
                     {{ item.name }}
@@ -14,8 +14,11 @@
               </div>
               <span class="text-sm font-bold text-gray-500 dark:text-sky-200">
                 <small class="text-slate-400">{{ poStore.currency }}</small>
-                {{ currency( ((item.quantity || 0) * (item.price || 0)) - (item.discount || 0)   ) }}</span>
+                {{ currency( ((item.quantity || 0) * (item.price || 0)) - (item.discount || 0)   ) }}
+              </span>
             </div>
+
+
             <div v-if="poStore.isExpanded(item.id)">
               <div class="grid grid-cols-2 gap-4 lg:grid-cols-12">
                 <div class="col-span-4">

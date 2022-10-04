@@ -1,7 +1,7 @@
 /*
 * This store manages all user preferences for the UI
 * */
-import {defineStore, skipHydrate} from "pinia";
+import {defineStore} from "pinia";
 import {find} from "lodash/collection.js";
 import {clone} from "lodash";
 import {ref} from "vue";
@@ -10,7 +10,7 @@ export const usePosStore = defineStore('posStore', () => {
 
     //booleans
     const showModifier = ref(false),
-    currency = 'KES',
+    currency = ref('KES'),
     products = ref([
           {
               id:1,
@@ -69,9 +69,9 @@ export const usePosStore = defineStore('posStore', () => {
 
         return {
             showModifier, currency,
-            products, selectedProducts: skipHydrate(selectedProducts),
+            products, selectedProducts,
             expandedItems,
             toggleSelect, isExpanded, isSelected,
-            cartTotals:skipHydrate(cartTotals), toggleExpand
+            cartTotals, toggleExpand
         }
 }, {persist: {enabled:false}})

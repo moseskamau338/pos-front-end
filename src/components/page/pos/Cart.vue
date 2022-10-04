@@ -12,7 +12,8 @@
                   <p class="text-xs text-gray-400">{{ item.description }}</p>
                 </div>
               </div>
-              <span class="text-sm font-bold text-gray-500 dark:text-sky-200">{{ item.currency }}
+              <span class="text-sm font-bold text-gray-500 dark:text-sky-200">
+                <small class="text-slate-400">{{ poStore.currency }}</small>
                 {{ currency( ((item.quantity || 0) * (item.price || 0)) - (item.discount || 0)   ) }}</span>
             </div>
             <div v-if="poStore.isExpanded(item.id)">
@@ -62,26 +63,26 @@
           <tr>
             <td class="text-sm">Subtotal</td>
             <td>
-              <div class="text-right text-sm">{{ currency(poStore.cartTotals.subtotal) }}</div>
+              <div class="text-right text-sm">{{ currency(poStore.cartTotals().subtotal) }}</div>
             </td>
           </tr>
           <tr>
             <td class="text-sm">Tax</td>
             <td>
-              <div class="text-right text-sm">{{ currency(poStore.cartTotals.tax) }}</div>
+              <div class="text-right text-sm">{{ currency(poStore.cartTotals().tax) }}</div>
             </td>
           </tr>
           <tr>
             <td class="text-sm">Discount</td>
             <td>
-              <div class="text-right text-sm">{{currency(poStore.cartTotals.discount)}}</div>
+              <div class="text-right text-sm">{{currency(poStore.cartTotals().discount)}}</div>
             </td>
           </tr>
 
           <tr>
             <td class="text-lg py-4 font-bold text-highlight">Total</td>
             <td>
-              <div class="text-right text-lg font-bold text-highlight py-4">{{ poStore.currency }} {{ currency(poStore.cartTotals.total) }}</div>
+              <div class="text-right text-lg font-bold text-highlight py-4">{{ poStore.currency }} {{ currency(poStore.cartTotals().total) }}</div>
             </td>
           </tr>
 
@@ -90,7 +91,7 @@
 
         <CButton class="w-full text-lg mt-5 flex justify-between">
           <span>Checkout</span>
-          <span>{{ poStore.currency }} {{ currency(poStore.cartTotals.total) }}</span>
+          <span>{{ poStore.currency }} {{ currency(poStore.cartTotals().total) }}</span>
         </CButton>
       </div>
     </div>

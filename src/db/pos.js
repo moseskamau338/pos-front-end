@@ -25,7 +25,7 @@ export const usePosStore = defineStore('posStore', () => {
               image:'/images/food.svg',
               name:'Another cake',
               description:'',
-              price:1000, discount:0, tax:0, quantity:0
+              price:30000, discount:0, tax:0, quantity:0
           },
           {id:2,image:'/images/food.svg',name:'Fruit Cake',
               description:'', price:200, discount:0, tax:0, quantity:0},
@@ -36,7 +36,14 @@ export const usePosStore = defineStore('posStore', () => {
           {id:7,image:'/images/food.svg',name:'Dunkies', description:'', price:342.99, discount:0, tax:0, quantity:0},
         ]),
     selectedProducts = ref([]),
-    expandedItems = ref([])
+    selectedCategories = ref([]),
+    expandedItems = ref([]),
+    categories = ref([
+        {id:'cake', name:'Cakes'},
+        {id:'pastries', name:'Pastries'},
+        {id:'wedding_cakes', name:'Wedding Cakes'},
+        {id:'fruit_cakes', name:'Fruit Cakes'},
+    ])
 
     const filteredClients = computed(() => {
       if (query.value.length === 0){
@@ -69,6 +76,16 @@ export const usePosStore = defineStore('posStore', () => {
             expandedItems.value.push(id)
           }
         }
+        function selectCategory(e, category) {
+            console.log('Selecting category: ', category)
+          if (selectedCategories.value.includes(category)){
+            //remove
+            selectedCategories.value.splice(selectedCategories.value.indexOf(category), 1)
+          }else{
+            selectedCategories.value.push(category)
+          }
+        }
+
         function isExpanded(id){
             return expandedItems.value.includes(id)
         }
@@ -85,10 +102,10 @@ export const usePosStore = defineStore('posStore', () => {
 
 
         return {
-            showModifier, currency,
-            products, selectedProducts,
+            showModifier, currency,selectedCategories,
+            products, selectedProducts,selectCategory,
             expandedItems, query, filteredClients,
             toggleSelect, isExpanded, isSelected,
-            cartTotals, toggleExpand
+            cartTotals, toggleExpand, categories
         }
 }, {persist: {enabled:false}})

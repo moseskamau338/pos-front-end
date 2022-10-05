@@ -1,27 +1,12 @@
 <template>
 <section class="grid grid-cols-12 gap-7 mx-5 h-[100vh]">
   <div class="col-span-8">
-    <div class="flex items-center justify-between">
-      <div class="mt-1 relative flex items-center">
-        <input v-model="posStore.query" type="text" name="search" id="search" class="shadow-sm focus:ring-highlight focus:border-highlight block w-[500px] pr-12 sm:text-sm border-gray-300 rounded-md" placeholder="Search items...">
-        <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
-          <button class="inline-flex items-center border border-gray-200 rounded px-2 text-sm font-sans font-medium text-gray-400"> <i class="fas fa-filter-list"></i> </button>
-        </div>
-      </div>
+     <Filters />
 
-      <div class="flex space-x-2 items-end">
-        <span v-for="i in 2" class="py-2 px-2 bg-sky-200/40 rounded-full text-sm font-bold border-sky-400 flex items-center space-x-2">
-          <button class="bg-sky-300 hover:shadow hover:scale-105 flex items-center justify-center h-4 w-4 rounded-full">&cross;</button>
-          <span>Category {{i}}</span>
-        </span>
-        <span>...+3 more</span>
-      </div>
-    </div>
     <section class="min-h-[60vh] max-h-[80vh] overflow-y-auto mt-5">
       <!--items-->
       <Items />
     </section>
-     <!--<Categories />-->
   </div>
   <div class="col-span-4">
     <header class="flex items-center justify-between">
@@ -95,7 +80,7 @@
 import CButton from "@/components/elements/CButton.vue";
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 
-import Categories from "@/components/page/pos/Categories.vue";
+import Filters from "@/components/page/pos/Filters.vue";
 import Items from "@/components/page/pos/Items.vue";
 import Cart from "@/components/page/pos/Cart.vue";
 import {ref} from "vue";
@@ -109,7 +94,7 @@ export default {
     Orders,
     Cart,
     Items,
-    Categories,
+    Filters,
     Menu, MenuButton, MenuItems,
     MenuItem, CButton
   },

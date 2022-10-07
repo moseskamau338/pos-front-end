@@ -1,7 +1,7 @@
 <template>
   <Modal :show="open" size="small" source="confirmation" asAlert class="z-[75]">
     <template #body>
-      <div class="flex space-x-2 my-2 mb-10">
+      <div class="flex space-x-2 my-2 mb-0">
           <Avatar :variant="type" :icon="theme.toast(type).icon" />
         <div>
           <slot>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Modal from "@/components/page/Modal.vue";
+import Modal from "@/components/elements/Modal.vue";
 import CButton from "@/components/elements/CButton.vue";
 import Avatar from "@/components/elements/Avatar.vue";
 import {inject, ref} from "vue";
@@ -37,7 +37,7 @@ import {ThemeGenerator} from "@/library/ThemeGenerator";
 export default {
   name: "Confirmation",
   props:{
-    phrase:{type: String, default:''},
+    phrase:{type: String, default:null},
     open:{type:Boolean, default: false},
     type:{type:String, default: 'danger' },
     title: { type: String},

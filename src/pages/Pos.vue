@@ -39,27 +39,24 @@
               <MenuItems
                 class="absolute z-50 right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-brand-dark dark:border dark:border-slate-600 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div class="px-1 py-1">
-                  <MenuItem v-slot="{ active }">
+                  <MenuItem v-slot="{ active }" v-for="item in [
+                      {name:'Order Processing List', action: () => showOrders = true },
+                      {name:'Hold Order', action: () => showOrders = true },
+                      {name:'Retrieve Order', disabled:true, action: () => showOrders = true },
+                  ]">
                     <button
-                        @click="showOrders = true"
+                        :disabled="item.disabled"
+                        @click="item.action?.()"
                       :class="[
                         active ? 'bg-highlight-light/50  dark:bg-highlight' : '',
+                        item.disabled ? 'pointer-events-none opacity-60' : '',
                         'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                       ]"
                     >
-                      Order Processing List
+                      {{ item.name }}
                     </button>
                   </MenuItem>
-                  <MenuItem v-slot="{ active }">
-                    <button
-                      :class="[
-                        active ? 'bg-highlight-light/50 dark:bg-highlight' : '',
-                        'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                      ]"
-                    >
-                      Duplicate
-                    </button>
-                  </MenuItem>
+
                 </div>
               </MenuItems>
             </transition>

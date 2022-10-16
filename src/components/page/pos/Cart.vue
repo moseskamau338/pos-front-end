@@ -50,10 +50,43 @@
 
 
               </div>
-              <div class="flex justify-end mt-3 space-x-2">
-                <button  @click="poStore.showModifier = !poStore.showModifier" class="font-semibold text-highlight hover:underline text-[10px]">Modifiers(0)</button>
+              <div class="flex justify-between mt-3">
+                <div>
+                  <PopoverMenu>
+                    <template #title>
+                      <button class="bg-sky-50 hover:shadow transition-all py-0.5 px-1 text-[10px] text-highlight rounded">
+                        <i class="fad fa-weight-hanging mr-2"></i>
+                        Weights & Flavours
+                      </button>
+                    </template>
+                    <div class="bg-white border p-2 w-[250px]">
+                     <h4 class="text-xs font-semibold">More actions</h4>
+                      <div class="flex items-center space-x-4">
+                        <select class="mt-1 block w-full pl-3 pr-10 py-1 text-xs border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded">
+                          <option selected>--Weight--</option>
+                          <option>Weight 1</option>
+                          <option>Weight 2</option>
+                        </select>
+                        <i class="fas fa-arrow-right"></i>
+                        <span class="text-xs font-semibold text-highlight whitespace-nowrap">&plus; 78790.00</span>
+                      </div>
+                      <div class="flex items-center space-x-4 mt-5">
+                        <select class="mt-1 block w-full pl-3 pr-10 py-1 text-xs border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded">
+                          <option selected>--Flavours--</option>
+                          <option>Weight 1</option>
+                          <option>Weight 2</option>
+                        </select>
+                        <i class="fas fa-arrow-right"></i>
+                        <span class="text-xs font-semibold text-highlight whitespace-nowrap">&plus; 78790.00</span>
+                      </div>
+                    </div>
+                  </PopoverMenu>
+                </div>
+                <div class="flex justify-end space-x-2">
+                  <button  @click="poStore.showModifier = !poStore.showModifier" class="font-semibold text-highlight hover:underline text-[10px]">Modifiers(0)</button>
 
-                <button  @click="poStore.showModifier = !poStore.showModifier" class="font-semibold text-highlight hover:underline text-[10px]">Addons(0)</button>
+                  <button  @click="poStore.showAccessory = !poStore.showAccessory" class="font-semibold text-highlight hover:underline text-[10px]">Addons(0)</button>
+                </div>
               </div>
             </div>
           </li>
@@ -98,7 +131,12 @@
         </CButton>
       </div>
     </div>
-  <AddModifier @click="poStore.showModifier = false" :show="poStore.showModifier" />
+  <AddModifier
+      @close="poStore.showModifier = false"
+      :show="poStore.showModifier" />
+  <AddAccessories
+      @close="poStore.showAccessory = false"
+      :show="poStore.showAccessory" />
 </template>
 
 <script>
@@ -106,12 +144,14 @@ import CButton from "@/components/elements/CButton.vue";
 import Avatar from "@/components/elements/Avatar.vue";
 import {inject} from "vue";
 import AddModifier from "@/components/page/pos/AddModifier.vue";
+import AddAccessories from "@/components/page/pos/AddAccessories.vue";
 import {usePosStore} from "@/db/pos.js";
 import Empty from "@/components/app/Empty.vue";
 import {storeToRefs} from "pinia";
+import PopoverMenu from "@/components/elements/PopoverMenu.vue";
 export default {
   name: "Cart",
-  components: {Empty, AddModifier, CButton, Avatar},
+  components: {PopoverMenu, Empty, AddModifier, CButton, Avatar, AddAccessories},
   setup(){
     const poStore = usePosStore()
      const {currency} = inject('helpers')

@@ -4,12 +4,12 @@
       <slot name="label"></slot>
   </ComboboxLabel>
     <div class="relative">
-      <ComboboxInput class="placeholder-gray-400 w-full rounded border border-gray-300 py-1.5 pl-3 pr-10 shadow-sm focus:outline-none focus:ring-1 focus:ring-highlight focus:border-highlight sm:text-xs" @change="query = $event.target.value" placeholder="Search customer" :display-value="(person) => person?.name" />
+      <ComboboxInput class="placeholder-gray-400 w-full rounded border border-gray-300 py-1.5 pl-3 pr-10 shadow-sm focus:outline-none focus:ring-1 focus:ring-highlight focus:border-highlight sm:text-xs" @change="query = $event.target.value" placeholder="Search..." :display-value="(person) => person?.name" />
       <ComboboxButton class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
         <i class="fa-solid fa-sort text-gray-400 text-sm" aria-hidden="true"></i>
       </ComboboxButton>
 
-      <ComboboxOptions class="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white dark:bg-brand-box py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+      <ComboboxOptions class="absolute z-50 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white dark:bg-brand-box py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
         <ComboboxOption v-for="person in filteredPeople" :key="person.id" :value="person" as="template" v-slot="{ active, selected }">
           <li :class="['relative cursor-default select-none py-2 pl-3 pr-9', active ? 'bg-highlight text-white' : 'text-gray-900']">
             <div class="flex items-center">

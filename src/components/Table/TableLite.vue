@@ -56,7 +56,7 @@
                       :class="[record.selected? 'border-l-2':'']">
 
                       <!-- row data -->
-                  <td @click="rowClicked(record)" :key="ind" v-for="(field, ind) in headers" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-300">
+                  <td @click="rowClicked(record)" :key="ind" v-for="(field, ind) in headers" class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-300 align-top">
                     <slot :name="field.key" v-bind:record="record">
                       <div class="relative flex items-start">
                         <div class="flex items-center h-5" v-if="selectable && ind === 0">

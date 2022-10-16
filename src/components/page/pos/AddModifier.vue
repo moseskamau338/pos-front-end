@@ -2,78 +2,75 @@
  <Modal :show="show" @close="close" source="orders">
     <template #title>
       <span class="flex text-xl space-x-1.5 items-center font-bold">
-        <i class="fad fa-edit"></i>
-        <span>Edit Item</span>
+        <i class="fa-duotone fa-bags-shopping"></i>
+        <span>Add Modifier</span>
       </span>
     </template>
     <template #body>
         <p class="mt-4 text-sm">
-          This list shows all order items that have not been completed but are in other statuses
+          Modifiers help customize order items with specific ingredient changes and notes to the kitchen staff to help them deliver the best products to the customers.
+          <br>
+          To add a modifier in an order containing multiple similar items,<b><i> please treat the affected products as separate orders for accountability</i></b>.
         </p>
 
-      <div class="mt-8">
-        <TableLite :headers="fields" :records="records">
-        <template #actions>
-          <input type="text" name="search" id="name" class="shadow-sm focus:ring-sky-500 focus:border-sky-500 block w-full sm:text-sm leading-none py-1 border-gray-300 rounded-md placeholder-slate-400 dark:border-slate-500 dark:bg-brand-dark" placeholder="Search orders..">
-        </template>
+      <div class="mt-5">
+        <h3 class="font-bold text-sm mb-4">Select Modifier Type</h3>
+        <TabGroup as="div">
+          <TabList class="flex bg-slate-200 py-1 w-fit px-2 rounded space-x-2">
+            <Tab v-slot="{selected}"
+                 :class="[
+                     selected ? 'shadow bg-white border' : ''
+                 ]"
+                class="px-4 py-1 rounded text-xs font-semibold">Ingredient Modifier</Tab>
+            <Tab v-slot="{selected}"
+                 :class="[
+                     selected ? 'shadow bg-white border' : ''
+                 ]"
+                class="px-4 py-1 rounded text-xs font-semibold">Note Modifier</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <div class="mt-2">
+                  <TableLite removePagination :headers="fields" :records="records" actioned>
+                  <template #header>
+                   <SearchSelect autofocus class="w-48" />
+                  </template>
+                    <template #name="{record}">
+                      <input type="text" disabled :value="record.name" name="search" id="name" class="w-fit shadow-sm focus:ring-sky-500 focus:border-sky-500 block w-full text-[10px] leading-none py-1.5 border-gray-300 rounded placeholder-slate-400 dark:border-slate-500 dark:bg-brand-dark" placeholder="Search ingredients..">
+                    </template>
+                    <template #quantity="{record}">
+                      <input type="number" v-model="record.quantity" class="w-fit shadow-sm focus:ring-sky-500 focus:border-sky-500 block w-full text-[10px] leading-none py-1.5 border-gray-300 rounded placeholder-slate-400 dark:border-slate-500 dark:bg-brand-dark" placeholder="quantity..">
+                    </template>
 
-          <template #header_status="{field}">
-            <div>
-              <span class="uppercase text-xs font-medium mr-2">{{field.key}}</span>
-              <Dropdown>
-                <button class="bg-slate-300 px-1 flex items-center justify-center h-4 w-4 rounded-full">
-                  <i class="fas fa-chevron-down"></i>
-                </button>
-                <template #content>
-                 <div class="w-48 border bg-white px-2 py-1">
-                    <ul>
-                      <li class="text-xs text-slate-400" v-for="item in [
-                          {name:'Processing'},
-                          {name:'On-Hold'},
-                          {name:'Pending'},
-                          {name:'Draft'},
-                      ]">
-                        <div class="relative flex items-center space-x-1">
-                          <div class="flex items-center h-5">
-                            <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="focus:ring-0 h-3 w-3 text-highlight border-gray-300 rounded-sm">
-                          </div>
-                            <label class="font-medium">{{ item.name }}</label>
-                        </div>
-                      </li>
-                    </ul>
-                 </div>
-                </template>
-              </Dropdown>
-            </div>
-          </template>
+                    <template #price="{record}">
+                      <input type="number" v-model="record.price" class="w-fit shadow-sm focus:ring-sky-500 focus:border-sky-500 block w-full text-[10px] leading-none py-1.5 border-gray-300 rounded placeholder-slate-400 dark:border-slate-500 dark:bg-brand-dark" placeholder="price..">
+                    </template>
+                    <template #description="{record}">
+                      <textarea type="number" v-model="record.price" class="w-fit shadow-sm focus:ring-sky-500 focus:border-sky-500 block w-full text-[10px] leading-none py-1.5 border-gray-300 rounded placeholder-slate-400 dark:border-slate-500 dark:bg-brand-dark" placeholder="Description.." />
+                    </template>
+                    <template #attachments="{record}">
+                      attachments
+                    </template>
 
-          <template #id="{record}">
-            <span class="text-xs font-bold text-highlight">{{ record.id }}</span>
-          </template>
-          <template #customer="{record}">
-            <span class="text-xs">{{ record.customer }}</span>
-          </template>
-          <template #amount="{record}">
-            <div class="text-right">
-              <span class="text-xs font-bold">{{ posStore.currency }} {{ currency(record.amount) }}</span>
-            </div>
-          </template>
+                    <template #row_actions="{record}">
+                      <CButton variant="danger" class="text-xs py-0.5">Remove</CButton>
+                    </template>
 
-          <template #source="{record}">
-              <Badge :themes="[
-                  {name:'online', status:'info'},
-                  {name:'walk-in', status:'dark'},
-                  {name:'in-house', status:'warning'},
-              ]" :status="record.source" small />
-          </template>
-
-          <template #status="{record}">
-              <Badge :status="record.status" small />
-          </template>
-
-
-      </TableLite>
+                </TableLite>
+                </div>
+            </TabPanel>
+            <TabPanel>
+              <section class="mt-4">
+                <form class="">
+                  <label class="text-xs font-bold">Add a note to describe how this order should be prepared</label>
+                  <textarea rows="5" class="shadow-sm w-[500px] focus:ring-sky-500 focus:border-sky-500 block text-[10px] leading-none py-1.5 border-gray-300 rounded placeholder-slate-400 dark:border-slate-500 dark:bg-brand-dark" placeholder="Add a note about this order.."></textarea>
+                </form>
+              </section>
+            </TabPanel>
+          </TabPanels>
+        </TabGroup>
       </div>
+
 
     </template>
     <template #footer>
@@ -92,15 +89,20 @@
 import CButton from "@/components/elements/CButton.vue";
 import Modal from "@/components/elements/Modal.vue";
 import TableLite from "@/components/Table/TableLite.vue";
-import {inject, onMounted, ref} from "vue";
+import {inject, ref} from "vue";
 import {usePosStore} from "@/db/pos.js";
 import Badge from "@/components/elements/Badge.vue";
 import Dropdown from "@/components/elements/Dropdown.vue";
-
+import SearchSelect from "@/components/elements/SearchSelect.vue";
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue'
 
 export default {
   name: "AddModifier",
-  components:{Dropdown, Badge, TableLite, CButton, Modal},
+  components:{
+    SearchSelect, Dropdown,
+    Badge, TableLite, CButton, Modal,
+    TabGroup, TabList, Tab, TabPanels, TabPanel,
+  },
    props:{
     show:{required: true, type: Boolean}
   },
@@ -109,22 +111,14 @@ export default {
     const posStore = usePosStore()
     /*source: online, in-house, walk-in*/
     const fields = ref([
-      {key:'id'},
-      {key:'customer'},
-      {key:'amount'},
-      {key:'source'},
-      {key:'status'},
+      {key:'name'},
+      {key:'quantity'},
+      {key:'price'},
+      {key:'description'},
+      {key:'attachments'},
     ])
     const records = ref([
-      {id:'JKY-782378', customer:'Walk-In_customer', amount:579000,source:'walk-in', status:'processing'},
-      {id:'PHU-0009', customer:'Walk-In_customer', amount:8653.90,source:'walk-in', status:'processing'},
-      {id:'PHU-00010', customer:'John Njenga', amount:900,source:'online', status:'processing'},
-      {id:'PHU-00011', customer:'Karani K', amount:1234.64,source:'in-house', status:'pending'},
-      {id:'PHU-00012', customer:'Francis P', amount:7382,source:'in-house', status:'hold'},
-      {id:'PHU-00013', customer:'Michael Kimani', amount:2463,source:'online', status:'hold'},
-      {id:'PHU-00014', customer:'Moses Friend', amount:765354,source:'walk-in', status:'pending'},
-      {id:'PHU-00015', customer:'Andrew Doe', amount:6272,source:'walk-in', status:'pending'},
-      {id:'PHU-00016', customer:'Cleaner XD', amount:83654,source:'walk-in', status:'draft'},
+      {name:'PHU-00015', quantity:'Andrew Doe', price:6272,description:'walk-in', attachments:'pending'},
     ])
 
 

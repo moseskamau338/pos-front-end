@@ -16,7 +16,7 @@ module.exports = {
         //emphasis
         'brand-green':'#40ba58',
         'light-green':'#E5F8ED',
-        'success':'#55C770',
+        'success':'#2fc742',
         //dark mode
         'brand-dark-box': '#1F2C42',
         'brand-dark': '#1A2132'
@@ -27,6 +27,7 @@ module.exports = {
       require('@tailwindcss/forms'),
       require('@tailwindcss/aspect-ratio'),
       require('@tailwindcss/typography'),
-      require('tailwind-scrollbar-hide')
+      require('tailwind-scrollbar-hide'),
+      require('@headlessui/tailwindcss')
   ],
 }

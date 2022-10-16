@@ -10,6 +10,7 @@ export const usePosStore = defineStore('posStore', () => {
 
     //booleans
     const showModifier = ref(false),
+     showAccessory = ref(false),
     currency = ref('KES'),
     query = ref(''),
     products = ref([
@@ -102,6 +103,7 @@ export const usePosStore = defineStore('posStore', () => {
 
 
         return {
+            showAccessory,
             showModifier, currency,selectedCategories,
             products, selectedProducts,selectCategory,
             expandedItems, query, filteredClients,

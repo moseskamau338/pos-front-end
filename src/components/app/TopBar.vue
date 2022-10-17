@@ -12,6 +12,7 @@
                 ]"
                 class="fa-solid group-hover:text-highlight group-hover:dark:text-sky-300 text-sm transition-all duration-300"></i>
           </button>
+          <h3 class="ml-5 text-sm font-bold">Bakery & Restaurant P.O.S</h3>
         </div>
         <div class="flex justify-evenly items-center space-x-8">
           <div class="mt-1 relative rounded-full w-[250px] bg-slate-100 dark:bg-brand-dark">

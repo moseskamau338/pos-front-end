@@ -12,9 +12,6 @@
     <header class="flex items-center justify-between">
       <SearchSelect />
       <div class="flex items-center space-x-5">
-        <button class="hover:bg-slate-200 transition-all duration-200 flex justify-center items-center h-5 w-5 rounded-full group">
-          <i class="fas fa-plus text-xs transition-all duration-200 group-hover:text-highlight"></i>
-        </button>
         <button :disabled="posStore.selectedProducts.length <= 0" @click="confirmClearCart" class="hover:bg-red-100 transition-all duration-200 flex justify-center items-center h-5 w-5 rounded-full group">
           <i class="fas fa-trash text-xs transition-all duration-200 group-hover:text-red-500"></i>
         </button>

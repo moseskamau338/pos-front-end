@@ -90,7 +90,7 @@
                         </td>
                       </tr>
                       <tr v-else>
-                        <td :colspan="headers.length">
+                        <td :colspan="headers.length + (actioned ? 1 : 0)">
                              <Empty />
                         </td>
                       </tr>
